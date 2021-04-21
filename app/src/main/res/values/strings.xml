@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">AM Market</string>
+    <string name="title_activity_main2">MainActivity</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="title_profile">Profile</string>
+    <string name="title_cart">cart</string>
+    <string name="title_wish_list">Favorites</string>
+</resources>
