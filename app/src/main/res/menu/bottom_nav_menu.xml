@@ -6,37 +6,37 @@
         android:id="@+id/navigation_home"
         android:icon="@drawable/home"
         android:title="@string/title_home"
-        app:cnb_backgroundColor="@color/pink_light"
+        app:cnb_backgroundColor="@color/white"
         app:cnb_iconColor="@color/pink"
         app:cnb_iconTintMode="src_in"
-        app:cnb_textColor="@color/pink_light_p" />
+        app:cnb_textColor="@color/pink_light" />
 
     <item
         android:id="@+id/navigation_cart"
         android:icon="@drawable/cart"
         android:title="@string/title_cart"
-        app:cnb_backgroundColor="@color/pink_light"
+        app:cnb_backgroundColor="@color/white"
         app:cnb_iconColor="@color/pink"
         app:cnb_iconTintMode="src_in"
-        app:cnb_textColor="@color/pink_light_p" />
+        app:cnb_textColor="@color/pink_light" />
 
     <item
         android:id="@+id/navigation_wishlist"
         android:icon="@drawable/heart"
         android:title="@string/title_wish_list"
-        app:cnb_backgroundColor="@color/pink_light"
+        app:cnb_backgroundColor="@color/white"
         app:cnb_iconColor="@color/pink"
         app:cnb_iconTintMode="src_in"
-        app:cnb_textColor="@color/pink_light_p"/>
+        app:cnb_textColor="@color/pink_light"/>
 
     <item
         android:id="@+id/navigation_profile"
         android:icon="@drawable/user"
         android:title="@string/title_profile"
-        app:cnb_backgroundColor="@color/pink_light"
+        app:cnb_backgroundColor="@color/white"
         app:cnb_iconColor="@color/pink"
         app:cnb_iconTintMode="src_in"
-        app:cnb_textColor="@color/pink_light_p"/>
+        app:cnb_textColor="@color/pink_light"/>
 
 
 </menu>
