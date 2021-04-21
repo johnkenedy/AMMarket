@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/navigation_cart"
+        android:icon="@drawable/cart"
+        android:title="@string/buy"
+        app:cnb_backgroundColor="@color/white"
+        app:cnb_iconColor="@color/pink"
+        app:cnb_iconTintMode="src_in"
+        app:cnb_textColor="@color/pink_light" />
+
+    <item
+        android:id="@+id/navigation_coupon"
+        android:icon="@drawable/coupon"
+        android:title="@string/title_coupon"
+        app:cnb_backgroundColor="@color/white"
+        app:cnb_iconColor="@color/pink"
+        app:cnb_iconTintMode="src_in"
+        app:cnb_textColor="@color/pink_light" />
+
+    <item
+        android:id="@+id/navigation_list"
+        android:icon="@drawable/list"
+        android:title="@string/list"
+        app:cnb_backgroundColor="@color/white"
+        app:cnb_iconColor="@color/pink"
+        app:cnb_iconTintMode="src_in"
+        app:cnb_textColor="@color/pink_light"/>
+
+    <item
+        android:id="@+id/navigation_store"
+        android:icon="@drawable/place"
+        android:title="@string/title_stores"
+        app:cnb_backgroundColor="@color/white"
+        app:cnb_iconColor="@color/pink"
+        app:cnb_iconTintMode="src_in"
+        app:cnb_textColor="@color/pink_light"/>
+
+    <item
+        android:id="@+id/navigation_logout"
+        android:icon="@drawable/exit"
+        android:title="@string/title_logout"
+        app:cnb_backgroundColor="@color/white"
+        app:cnb_iconColor="@color/pink"
+        app:cnb_iconTintMode="src_in"
+        app:cnb_textColor="@color/pink_light"/>
+
+    <item
+        android:id="@+id/navigation_show"
+        android:icon="@drawable/question"
+        android:title="@string/hide"
+        app:cnb_backgroundColor="@color/white"
+        app:cnb_iconColor="@color/pink"
+        app:cnb_iconTintMode="src_in"
+        app:cnb_textColor="@color/pink_light"/>
+
+</menu>

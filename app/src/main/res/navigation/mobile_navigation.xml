@@ -7,25 +7,25 @@
 
     <fragment
         android:id="@+id/navigation_home"
-        android:name="com.am_developer.ammarket.ui.home.HomeFragment"
+        android:name="com.am_developer.ammarket.fragment.HomeFragment"
         android:label="@string/title_home"
         tools:layout="@layout/fragment_home" />
 
     <fragment
-        android:id="@+id/navigation_cart"
-        android:name="com.am_developer.ammarket.ui.cart.CartFragment"
+        android:id="@+id/navigation_shopping"
+        android:name="com.am_developer.ammarket.fragment.CartFragment"
         android:label="@string/title_dashboard"
         tools:layout="@layout/fragment_cart" />
 
     <fragment
         android:id="@+id/navigation_wishlist"
-        android:name="com.am_developer.ammarket.ui.favorite.FavoriteFragment"
+        android:name="com.am_developer.ammarket.fragment.FavoriteFragment"
         android:label="@string/title_notifications"
         tools:layout="@layout/fragment_favorites" />
 
     <fragment
         android:id="@+id/navigation_profile"
-        android:name="com.am_developer.ammarket.ui.profile.ProfileFragment"
+        android:name="com.am_developer.ammarket.fragment.ProfileFragment"
         android:label="@string/title_notifications"
         tools:layout="@layout/fragment_profile" />
 </navigation>

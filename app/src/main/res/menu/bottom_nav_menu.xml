@@ -12,9 +12,9 @@
         app:cnb_textColor="@color/pink_light" />
 
     <item
-        android:id="@+id/navigation_cart"
+        android:id="@+id/navigation_shopping"
         android:icon="@drawable/cart"
-        android:title="@string/title_cart"
+        android:title="@string/buy"
         app:cnb_backgroundColor="@color/white"
         app:cnb_iconColor="@color/pink"
         app:cnb_iconTintMode="src_in"

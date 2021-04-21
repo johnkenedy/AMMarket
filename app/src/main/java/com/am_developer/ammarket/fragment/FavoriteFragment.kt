@@ -1,15 +1,15 @@
-package com.am_developer.ammarket.ui.profile
+package com.am_developer.ammarket.fragment
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.am_developer.ammarket.databinding.FragmentProfileBinding
+import com.am_developer.ammarket.databinding.FragmentFavoritesBinding
 
-class ProfileFragment : Fragment() {
+class FavoriteFragment : Fragment() {
 
-    private var _binding: FragmentProfileBinding? = null
+    private var _binding: FragmentFavoritesBinding? = null
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -19,11 +19,11 @@ class ProfileFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View {
+    ): View? {
 
-        _binding = FragmentProfileBinding.inflate(inflater, container, false)
+
+        _binding = FragmentFavoritesBinding.inflate(inflater, container, false)
         val root: View = binding.root
-
         return root
     }
 

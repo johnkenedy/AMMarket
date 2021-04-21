@@ -1,4 +1,4 @@
-package com.am_developer.ammarket.ui.cart
+package com.am_developer.ammarket.fragment
 
 import android.os.Bundle
 import android.view.LayoutInflater

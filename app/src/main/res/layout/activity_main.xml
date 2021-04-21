@@ -23,5 +23,22 @@
             app:cnb_radius="8dp"
             app:cnb_textAppearance="@style/Theme.AMMarket" />
 
+        <com.ismaeldivita.chipnavigation.ChipNavigationBar
+            android:id="@+id/vertical_nav_main"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_gravity="bottom"
+            app:cnb_minExpandedWidth="250dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="85dp"
+            android:background="@drawable/round_corners_no_color"
+            android:elevation="6dp"
+            app:cnb_iconSize="20dp"
+            app:cnb_menuResource="@menu/vertical_nav_menu"
+            app:cnb_orientationMode="vertical"
+            app:cnb_radius="8dp"
+            app:cnb_textAppearance="@style/Theme.AMMarket" />
+
     </RelativeLayout>
 </layout>
