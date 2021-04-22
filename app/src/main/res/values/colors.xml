@@ -13,5 +13,6 @@
     <color name="pink_light_clear">#FB2749</color>
     <color name="pink_light">#B3E43853</color>
     <color name="no_color">#00000000</color>
+    <color name="red">#D30E00</color>
 
 </resources>

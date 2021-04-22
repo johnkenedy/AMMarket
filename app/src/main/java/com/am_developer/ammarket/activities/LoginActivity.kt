@@ -1,14 +1,13 @@
 package com.am_developer.ammarket.activities
 
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
 import com.am_developer.ammarket.R
 import com.am_developer.ammarket.databinding.ActivityLoginBinding
 import com.am_developer.ammarket.fragment.LoginFragment
 import com.am_developer.ammarket.fragment.RegisterFragment
 import com.ismaeldivita.chipnavigation.ChipNavigationBar
 
-class LoginActivity : AppCompatActivity() {
+class LoginActivity : BaseActivity() {
 
     private lateinit var binding: ActivityLoginBinding
     private lateinit var chipNavigationBar: ChipNavigationBar
