@@ -3,6 +3,15 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
+        android:id="@+id/navigation_search"
+        android:icon="@drawable/search"
+        android:title="@string/search"
+        app:cnb_backgroundColor="@color/white"
+        app:cnb_iconColor="@color/pink"
+        app:cnb_iconTintMode="src_in"
+        app:cnb_textColor="@color/pink_light" />
+
+    <item
         android:id="@+id/navigation_cart"
         android:icon="@drawable/cart"
         android:title="@string/buy"
@@ -42,15 +51,6 @@
         android:id="@+id/navigation_logout"
         android:icon="@drawable/exit"
         android:title="@string/title_logout"
-        app:cnb_backgroundColor="@color/white"
-        app:cnb_iconColor="@color/pink"
-        app:cnb_iconTintMode="src_in"
-        app:cnb_textColor="@color/pink_light"/>
-
-    <item
-        android:id="@+id/navigation_show"
-        android:icon="@drawable/question"
-        android:title="@string/hide"
         app:cnb_backgroundColor="@color/white"
         app:cnb_iconColor="@color/pink"
         app:cnb_iconTintMode="src_in"

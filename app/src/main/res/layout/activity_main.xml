@@ -2,10 +2,82 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <RelativeLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/fragment_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
+        <pl.droidsonroids.gif.GifImageView
+            android:id="@+id/downUpMenu"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginEnd="15dp"
+            android:elevation="18dp"
+            android:padding="15dp"
+            android:src="@drawable/arrow_down"
+            app:layout_constraintBottom_toBottomOf="@+id/tb_main"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:tint="#707070" />
+
+        <com.ismaeldivita.chipnavigation.ChipNavigationBar
+            android:id="@+id/vertical_nav_main"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_gravity="bottom"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="15dp"
+            android:background="@drawable/round_corners"
+            android:elevation="8dp"
+            app:cnb_iconSize="20dp"
+            android:visibility="invisible"
+            app:cnb_menuResource="@menu/vertical_nav_menu"
+            app:cnb_minExpandedWidth="250dp"
+            app:cnb_orientationMode="vertical"
+            app:cnb_radius="8dp"
+            app:cnb_textAppearance="@style/Theme.AMMarket"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tb_main" />
+
+        <TextView
+            android:id="@+id/infinity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Toolbar
+            android:id="@+id/tb_main"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:elevation="4dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="100dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="7dp"
+            android:paddingBottom="15dp"
+            android:src="@drawable/logo"
+            app:layout_constraintBottom_toBottomOf="@+id/tb_main"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tb_main"
+            app:tint="@color/pink" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="26dp"
+            android:layout_marginBottom="5dp"
+            android:fontFamily="@font/baloo"
+            android:text="@string/market"
+            android:textAllCaps="true"
+            android:textColor="@color/dark"
+            app:layout_constraintBottom_toBottomOf="@id/tb_main"
+            app:layout_constraintStart_toStartOf="parent" />
 
         <com.ismaeldivita.chipnavigation.ChipNavigationBar
             android:id="@+id/bottom_nav_main"
@@ -14,31 +86,17 @@
             android:layout_alignParentBottom="true"
             android:layout_gravity="bottom"
             android:layout_margin="15dp"
-            android:layout_marginBottom="0dp"
             android:background="@drawable/round_corners"
             android:elevation="6dp"
             app:cnb_iconSize="20dp"
             app:cnb_menuResource="@menu/bottom_nav_menu"
             app:cnb_orientationMode="horizontal"
             app:cnb_radius="8dp"
-            app:cnb_textAppearance="@style/Theme.AMMarket" />
+            app:cnb_textAppearance="@style/Theme.AMMarket"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
 
-        <com.ismaeldivita.chipnavigation.ChipNavigationBar
-            android:id="@+id/vertical_nav_main"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_gravity="bottom"
-            app:cnb_minExpandedWidth="250dp"
-            android:layout_marginTop="15dp"
-            android:layout_marginBottom="85dp"
-            android:background="@drawable/round_corners_no_color"
-            android:elevation="6dp"
-            app:cnb_iconSize="20dp"
-            app:cnb_menuResource="@menu/vertical_nav_menu"
-            app:cnb_orientationMode="vertical"
-            app:cnb_radius="8dp"
-            app:cnb_textAppearance="@style/Theme.AMMarket" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-    </RelativeLayout>
 </layout>
