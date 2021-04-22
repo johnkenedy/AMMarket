@@ -1,6 +1,5 @@
 package com.am_developer.ammarket.fragment
 
-import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils
 import android.view.LayoutInflater
@@ -113,9 +112,12 @@ class RegisterFragment : BaseFragment() {
                         }
                     }
                     hideProgressDialog()
-                    startActivity(Intent(context, LoginActivity::class.java))
-
+                    activity?.supportFragmentManager?.beginTransaction()?.replace(
+                        R.id.login_fragment_container,
+                        LoginFragment()
+                    )?.commit()
                 }
+            LoginActivity().finish()
         }
     }
 }
