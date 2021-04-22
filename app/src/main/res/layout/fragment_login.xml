@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".fragment.LoginFragment">
@@ -42,7 +42,7 @@
         app:boxCornerRadiusBottomStart="30dp"
         app:boxCornerRadiusTopEnd="30dp"
         app:boxCornerRadiusTopStart="30dp"
-        app:hintTextAppearance="@style/AMMarkek_font_title_thin"
+        app:hintTextAppearance="@style/AMMarkek_font_title"
         app:hintTextColor="@color/pink"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -55,8 +55,8 @@
             android:id="@+id/et_login_email"
             style="@style/AMMarkek_font_title"
             android:layout_width="match_parent"
-            android:inputType="textEmailAddress"
             android:layout_height="match_parent"
+            android:inputType="textEmailAddress"
             android:textColor="@color/pink" />
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -72,7 +72,7 @@
         app:boxCornerRadiusBottomStart="30dp"
         app:boxCornerRadiusTopEnd="30dp"
         app:boxCornerRadiusTopStart="30dp"
-        app:hintTextAppearance="@style/AMMarkek_font_title_thin"
+        app:hintTextAppearance="@style/AMMarkek_font_title"
         app:hintTextColor="@color/pink"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -104,31 +104,19 @@
 
     <Button
         android:id="@+id/btn_login_enter"
+        style="@style/AMMarkek_font_title"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
-        style="@style/AMMarkek_font_title"
         android:background="@drawable/btn_background"
         android:text="@string/log_in"
+        android:textAllCaps="false"
         android:textColor="@color/white"
         android:textSize="16sp"
         android:textStyle="bold"
-        android:textAllCaps="false"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_login_forgot_password"
         app:layout_constraintWidth_percent=".9" />
-
-    <TextView
-        android:id="@+id/tv_login_register"
-        style="@style/AMMarkek_font_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="15dp"
-        android:text="@string/not_have_an_account_yet_register"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

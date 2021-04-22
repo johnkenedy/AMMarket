@@ -12,7 +12,7 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
-        <item name="fontFamily">@font/acme</item>
+        <item name="fontFamily">@font/alegreya_sc</item>
     </style>
 
     <style name="AMMarkek_font_title_thin">
