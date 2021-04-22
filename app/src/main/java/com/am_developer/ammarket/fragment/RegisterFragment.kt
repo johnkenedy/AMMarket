@@ -1,12 +1,18 @@
 package com.am_developer.ammarket.fragment
 
+import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.am_developer.ammarket.R
+import com.am_developer.ammarket.activities.LoginActivity
 import com.am_developer.ammarket.databinding.FragmentRegisterBinding
+import com.google.android.gms.tasks.OnCompleteListener
+import com.google.firebase.auth.AuthResult
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
 
 class RegisterFragment : BaseFragment() {
 
@@ -20,7 +26,7 @@ class RegisterFragment : BaseFragment() {
         binding = FragmentRegisterBinding.inflate(inflater, container, false)
 
         binding.btnRegisterRegister.setOnClickListener {
-            validateRegisterDetails()
+            registerUser()
         }
 
         return binding.root
@@ -52,7 +58,8 @@ class RegisterFragment : BaseFragment() {
                 false
             }
 
-            TextUtils.isEmpty(binding.etRegisterConfirmPassword.text.toString().trim { it <= ' ' }) -> {
+            TextUtils.isEmpty(
+                binding.etRegisterConfirmPassword.text.toString().trim { it <= ' ' }) -> {
                 showSnackBarInFragment(
                     resources.getString(R.string.err_msg_enter_confirm_password),
                     true
@@ -79,11 +86,36 @@ class RegisterFragment : BaseFragment() {
             }
 
             else -> {
-                showSnackBarInFragment("Your details are valid.", false)
                 true
             }
         }
     }
 
+    private fun registerUser() {
+        if (validateRegisterDetails()) {
 
+            showProgressDialog()
+
+            val email: String = binding.etRegisterEmail.text.toString().trim { it <= ' ' }
+            val password: String = binding.etRegisterPassword.text.toString().trim { it <= ' ' }
+
+            FirebaseAuth.getInstance().createUserWithEmailAndPassword(email, password)
+                .addOnCompleteListener {
+
+                    OnCompleteListener<AuthResult> { task ->
+
+                        if (task.isSuccessful) {
+                            val firebaseUser: FirebaseUser = task.result!!.user!!
+
+
+                        } else {
+                            showSnackBarInFragment(task.exception!!.message.toString(), true)
+                        }
+                    }
+                    hideProgressDialog()
+                    startActivity(Intent(context, LoginActivity::class.java))
+
+                }
+        }
+    }
 }

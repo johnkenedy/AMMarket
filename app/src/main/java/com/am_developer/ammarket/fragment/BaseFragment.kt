@@ -1,5 +1,6 @@
 package com.am_developer.ammarket.fragment
 
+import android.app.Dialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -11,6 +12,7 @@ import com.google.android.material.snackbar.Snackbar
 
 open class BaseFragment : Fragment() {
 
+private lateinit var mProgressDialog: Dialog
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -50,4 +52,21 @@ open class BaseFragment : Fragment() {
         }
         snackBar?.show()
     }
+
+    fun showProgressDialog() {
+        mProgressDialog = context?.let { Dialog(it) }!!
+
+        mProgressDialog.setContentView(R.layout.dialog_progress)
+
+        mProgressDialog.setCancelable(false)
+        mProgressDialog.setCanceledOnTouchOutside(false)
+
+        mProgressDialog.show()
+
+    }
+
+    fun hideProgressDialog() {
+        mProgressDialog.dismiss()
+    }
+
 }

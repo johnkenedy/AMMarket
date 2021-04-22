@@ -29,7 +29,7 @@ class LoginActivity : BaseActivity() {
         bottomLoginMenu()
     }
 
-    private fun bottomLoginMenu() {
+     fun bottomLoginMenu() {
         chipNavigationBar.setOnItemSelectedListener(object :
             ChipNavigationBar.OnItemSelectedListener {
 

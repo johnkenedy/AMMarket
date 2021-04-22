@@ -6,41 +6,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".fragment.RegisterFragment">
 
-    <Toolbar
-        android:id="@+id/tb_register"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:elevation="4dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="100dp"
-        android:layout_height="0dp"
-        android:layout_marginTop="7dp"
-        android:paddingBottom="15dp"
-        android:src="@drawable/logo"
-        app:layout_constraintBottom_toBottomOf="@+id/tb_register"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/tb_register"
-        app:tint="@color/pink" />
-
-    <TextView
-        style="@style/AMMarkek_font_title_thin"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="5dp"
-        android:fontFamily="@font/alegreya_sans_sc_thin"
-        android:text="@string/market"
-        android:textAllCaps="true"
-        android:textColor="@color/dark"
-        app:layout_constraintBottom_toBottomOf="@id/tb_register"
-        app:layout_constraintEnd_toEndOf="@+id/tb_register"
-        app:layout_constraintStart_toStartOf="@+id/tb_register" />
-
     <TextView
         android:id="@+id/iv_login_logo"
         android:layout_width="match_parent"
@@ -52,9 +17,9 @@
         android:textAllCaps="true"
         android:textColor="@color/pink"
         android:textSize="25sp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="70dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tb_register"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0" />
 
 
