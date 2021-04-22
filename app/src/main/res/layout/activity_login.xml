@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:id="@+id/login_fragment_container"
+        android:layout_height="match_parent"
+        tools:context=".activities.LoginActivity">
+
+
+        <com.ismaeldivita.chipnavigation.ChipNavigationBar
+            android:id="@+id/bottom_nav_register_login"
+            android:layout_width="match_parent"
+            android:layout_height="58dp"
+            android:layout_alignParentBottom="true"
+            android:layout_gravity="bottom"
+            android:layout_margin="15dp"
+            android:background="@drawable/round_corners"
+            android:elevation="6dp"
+            app:cnb_iconSize="20dp"
+            app:cnb_menuResource="@menu/login_register_nav_menu"
+            app:cnb_orientationMode="horizontal"
+            app:cnb_radius="8dp"
+            app:cnb_textAppearance="@style/Theme.AMMarket"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

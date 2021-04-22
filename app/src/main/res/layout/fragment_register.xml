@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".fragment.RegisterFragment">
+
+    <Toolbar
+        android:id="@+id/tb_register"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:elevation="4dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="100dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="7dp"
+        android:paddingBottom="15dp"
+        android:src="@drawable/logo"
+        app:layout_constraintBottom_toBottomOf="@+id/tb_register"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/tb_register" />
+
+    <TextView
+        style="@style/AMMarkek_font_title_thin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:fontFamily="@font/alegreya_sans_sc_thin"
+        android:text="@string/market"
+        android:textAllCaps="true"
+        android:textColor="@color/dark"
+        app:layout_constraintBottom_toBottomOf="@id/tb_register"
+        app:layout_constraintEnd_toEndOf="@+id/tb_register"
+        app:layout_constraintStart_toStartOf="@+id/tb_register" />
+
+    <TextView
+        android:id="@+id/iv_login_logo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:text="@string/register"
+        android:gravity="center"
+        android:textAllCaps="true"
+        android:textColor="@color/pink"
+        android:textSize="25sp"
+        android:layout_marginTop="50dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tb_register"
+        app:layout_constraintVertical_bias="0" />
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/til_register_name"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="45dp"
+        android:hint="@string/name"
+        app:boxCornerRadiusBottomEnd="30dp"
+        app:boxCornerRadiusBottomStart="30dp"
+        app:boxCornerRadiusTopEnd="30dp"
+        app:boxCornerRadiusTopStart="30dp"
+        app:hintTextAppearance="@style/AMMarkek_font_title_thin"
+        app:hintTextColor="@color/pink"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/iv_login_logo"
+        app:layout_constraintWidth_percent=".9"
+        app:startIconDrawable="@drawable/ic_baseline_person_outline_24"
+        app:startIconTint="@color/pink">
+
+        <EditText
+            android:id="@+id/et_register_name"
+            style="@style/AMMarkek_font_title"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textColor="@color/pink" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/til_register_email"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:hint="@string/email"
+        app:boxCornerRadiusBottomEnd="30dp"
+        app:boxCornerRadiusBottomStart="30dp"
+        app:boxCornerRadiusTopEnd="30dp"
+        app:boxCornerRadiusTopStart="30dp"
+        app:hintTextAppearance="@style/AMMarkek_font_title_thin"
+        app:hintTextColor="@color/pink"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/til_register_name"
+        app:layout_constraintWidth_percent=".9"
+        app:startIconDrawable="@drawable/ic_email"
+        app:startIconTint="@color/pink">
+
+        <EditText
+            android:id="@+id/et_register_email"
+            style="@style/AMMarkek_font_title"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:inputType="textEmailAddress"
+            android:textColor="@color/pink" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/til_register_password"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:hint="@string/password"
+        app:boxCornerRadiusBottomEnd="30dp"
+        app:boxCornerRadiusBottomStart="30dp"
+        app:boxCornerRadiusTopEnd="30dp"
+        app:boxCornerRadiusTopStart="30dp"
+        app:hintTextAppearance="@style/AMMarkek_font_title_thin"
+        app:hintTextColor="@color/pink"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/til_register_email"
+        app:layout_constraintWidth_percent=".9"
+        app:startIconDrawable="@drawable/ic_lock"
+        app:startIconTint="@color/pink">
+
+        <EditText
+            android:id="@+id/et_register_password"
+            style="@style/AMMarkek_font_title"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:inputType="textPassword"
+            android:textColor="@color/pink" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/til_register_confirm_password"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:hint="@string/confirm_password"
+        app:boxCornerRadiusBottomEnd="30dp"
+        app:boxCornerRadiusBottomStart="30dp"
+        app:boxCornerRadiusTopEnd="30dp"
+        app:boxCornerRadiusTopStart="30dp"
+        app:hintTextAppearance="@style/AMMarkek_font_title_thin"
+        app:hintTextColor="@color/pink"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/til_register_password"
+        app:layout_constraintWidth_percent=".9"
+        app:startIconDrawable="@drawable/ic_email"
+        app:startIconTint="@color/pink">
+
+        <EditText
+            android:id="@+id/et_register_confirm_password"
+            style="@style/AMMarkek_font_title"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:inputType="textPassword"
+            android:textColor="@color/pink" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <Button
+        android:id="@+id/btn_register_register"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        style="@style/AMMarkek_font_title"
+        android:background="@drawable/btn_background"
+        android:text="@string/register"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:textAllCaps="false"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/til_register_confirm_password"
+        app:layout_constraintWidth_percent=".9" />
+
+    <TextView
+        android:id="@+id/tv_register_loginr"
+        style="@style/AMMarkek_font_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp"
+        android:text="@string/already_have_an_account_log_in"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

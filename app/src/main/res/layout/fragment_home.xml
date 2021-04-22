@@ -10,8 +10,9 @@
     <ImageView
         android:id="@+id/iv_home_banner"
         android:layout_width="0dp"
-        android:layout_height="250dp"
+        android:layout_height="0dp"
         android:scaleType="centerCrop"
+        app:layout_constraintDimensionRatio="16:9"
         android:src="@drawable/poster_home"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

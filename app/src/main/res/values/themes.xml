@@ -14,4 +14,13 @@
         <!-- Customize your theme here. -->
         <item name="fontFamily">@font/acme</item>
     </style>
+
+    <style name="AMMarkek_font_title_thin">
+        <item name="fontFamily">@font/alegreya_sans_sc_thin</item>
+    </style>
+
+    <style name="AMMarkek_font_title">
+        <item name="fontFamily">@font/alegreya_sc</item>
+    </style>
+
 </resources>

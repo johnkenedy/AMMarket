@@ -18,7 +18,6 @@ class MainActivity : AppCompatActivity() {
 
     private var upDownMenu = 1
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -48,7 +47,6 @@ class MainActivity : AppCompatActivity() {
         chipNavigationBar.setOnItemSelectedListener(object :
             ChipNavigationBar.OnItemSelectedListener {
 
-
             override fun onItemSelected(id: Int) {
                 val fragment = when (id) {
                     R.id.navigation_home -> HomeFragment()
@@ -58,14 +56,15 @@ class MainActivity : AppCompatActivity() {
                     else -> HomeFragment()
                 }
 
-                supportFragmentManager.beginTransaction().replace(R.id.fragment_container, fragment)
-                    .commit()
+                supportFragmentManager.beginTransaction().replace(
+                    R.id.fragment_container,
+                    fragment
+                ).commit()
             }
         })
     }
 
     private fun verticalMenu() {
-
         verticalChipNavigationBar.setOnItemSelectedListener(object :
             ChipNavigationBar.OnItemSelectedListener {
             override fun onItemSelected(id: Int) {
@@ -102,5 +101,4 @@ class MainActivity : AppCompatActivity() {
 
         }
     }
-
 }
