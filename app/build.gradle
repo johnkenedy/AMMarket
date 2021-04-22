@@ -2,6 +2,7 @@ plugins {
     id 'com.android.application'
     id 'kotlin-android'
     id 'kotlin-kapt'
+    id 'com.google.gms.google-services'
 }
 
 android {
@@ -56,6 +57,10 @@ dependencies {
 
     //Gif
     implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.19'
+
+    //Firebase
+    implementation platform('com.google.firebase:firebase-bom:27.1.0')
+    implementation 'com.google.firebase:firebase-analytics-ktx'
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
