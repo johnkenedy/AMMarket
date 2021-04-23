@@ -38,4 +38,6 @@
     <string name="recover">RECOVER</string>
     <string name="recover_successfully_msg">We sent you an email, you can change your password there!</string>
     <string name="register_success">You are registered successfully.</string>
+    <string name="welcome">Welcome,</string>
+
 </resources>

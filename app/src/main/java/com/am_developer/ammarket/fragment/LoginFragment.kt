@@ -3,13 +3,15 @@ package com.am_developer.ammarket.fragment
 import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.am_developer.ammarket.R
-import com.am_developer.ammarket.activities.LoginActivity
 import com.am_developer.ammarket.activities.MainActivity
 import com.am_developer.ammarket.databinding.FragmentLoginBinding
+import com.am_developer.ammarket.firestore.FirestoreClass
+import com.am_developer.ammarket.models.User
 import com.google.firebase.auth.FirebaseAuth
 
 class LoginFragment : BaseFragment() {
@@ -30,6 +32,13 @@ class LoginFragment : BaseFragment() {
         return binding.root
     }
 
+    fun userLoggedInSuccess(user: User) {
+        hideProgressDialog()
+        Log.i("First Name: ", user.name)
+
+        startActivity(Intent(context, MainActivity::class.java))
+        activity?.finish()
+    }
 
     private fun validateLoginDetails(): Boolean {
         return when {
@@ -60,12 +69,11 @@ class LoginFragment : BaseFragment() {
             FirebaseAuth.getInstance().signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener { task ->
 
-                    hideProgressDialog()
-
                     if (task.isSuccessful) {
-                        startActivity(Intent(context, MainActivity::class.java))
-                        LoginActivity().finish()
+                        FirestoreClass().getUserDetails(this)
+
                     } else {
+                        hideProgressDialog()
                         showSnackBarInFragment(task.exception!!.message.toString(), true)
                     }
                 }

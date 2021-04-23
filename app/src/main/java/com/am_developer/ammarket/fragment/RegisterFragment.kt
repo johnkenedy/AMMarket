@@ -112,8 +112,8 @@ class RegisterFragment : BaseFragment() {
                         FirestoreClass().registerUser(this@RegisterFragment, user)
 
                     } else {
+                        hideProgressDialog()
                         showSnackBarInFragment(it.exception!!.message.toString(), true)
-
                     }
                 }
         }
@@ -124,7 +124,7 @@ class RegisterFragment : BaseFragment() {
         showSnackBarInFragment(resources.getString(R.string.register_success), false)
         activity?.supportFragmentManager?.beginTransaction()?.replace(
             R.id.login_fragment_container,
-            LoginFragment()
+            LoginFragment(),
         )?.commit()
     }
 
