@@ -6,10 +6,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.am_developer.ammarket.R
-import com.am_developer.ammarket.activities.LoginActivity
 import com.am_developer.ammarket.databinding.FragmentRegisterBinding
-import com.google.android.gms.tasks.OnCompleteListener
-import com.google.firebase.auth.AuthResult
+import com.am_developer.ammarket.firestore.FirestoreClass
+import com.am_developer.ammarket.models.User
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 
@@ -101,23 +100,32 @@ class RegisterFragment : BaseFragment() {
             FirebaseAuth.getInstance().createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener {
 
-                    OnCompleteListener<AuthResult> { task ->
+                    if (it.isSuccessful) {
+                        val firebaseUser: FirebaseUser = it.result!!.user!!
 
-                        if (task.isSuccessful) {
-                            val firebaseUser: FirebaseUser = task.result!!.user!!
+                        val user = User(
+                            firebaseUser.uid,
+                            binding.etRegisterName.text.toString().trim { it <= ' ' },
+                            binding.etRegisterEmail.text.toString().trim { it <= ' ' }
+                        )
 
+                        FirestoreClass().registerUser(this@RegisterFragment, user)
 
-                        } else {
-                            showSnackBarInFragment(task.exception!!.message.toString(), true)
-                        }
+                    } else {
+                        showSnackBarInFragment(it.exception!!.message.toString(), true)
+
                     }
-                    hideProgressDialog()
-                    activity?.supportFragmentManager?.beginTransaction()?.replace(
-                        R.id.login_fragment_container,
-                        LoginFragment()
-                    )?.commit()
                 }
-            LoginActivity().finish()
         }
     }
+
+    fun userRegistrationSuccess() {
+        hideProgressDialog()
+        showSnackBarInFragment(resources.getString(R.string.register_success), false)
+        activity?.supportFragmentManager?.beginTransaction()?.replace(
+            R.id.login_fragment_container,
+            LoginFragment()
+        )?.commit()
+    }
+
 }
