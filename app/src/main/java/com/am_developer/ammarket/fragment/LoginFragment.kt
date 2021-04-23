@@ -26,9 +26,6 @@ class LoginFragment : BaseFragment() {
         binding.btnLoginEnter.setOnClickListener {
             logInRegisteredUser()
         }
-        binding.tvLoginForgotPassword.setOnClickListener {
-
-        }
 
         return binding.root
     }

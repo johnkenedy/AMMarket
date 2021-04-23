@@ -20,4 +20,13 @@
         app:cnb_iconTintMode="src_in"
         app:cnb_textColor="@color/pink_light" />
 
+    <item
+        android:id="@+id/navigation_forgot_pasword"
+        android:icon="@drawable/forgot"
+        android:title="@string/forgot_password"
+        app:cnb_backgroundColor="@color/white"
+        app:cnb_iconColor="@color/pink"
+        app:cnb_iconTintMode="src_in"
+        app:cnb_textColor="@color/pink_light" />
+
 </menu>

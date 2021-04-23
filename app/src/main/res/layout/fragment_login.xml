@@ -91,17 +91,6 @@
 
     </com.google.android.material.textfield.TextInputLayout>
 
-    <TextView
-        android:id="@+id/tv_login_forgot_password"
-        style="@style/AMMarkek_font_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="5dp"
-        android:text="@string/forgot_password"
-        android:textColor="@color/pink"
-        app:layout_constraintEnd_toEndOf="@+id/til_login_email"
-        app:layout_constraintTop_toBottomOf="@+id/til_login_password" />
-
     <Button
         android:id="@+id/btn_login_enter"
         style="@style/AMMarkek_font_title"
@@ -116,7 +105,7 @@
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_login_forgot_password"
+        app:layout_constraintTop_toBottomOf="@+id/til_login_password"
         app:layout_constraintWidth_percent=".9" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

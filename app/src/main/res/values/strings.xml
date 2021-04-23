@@ -34,4 +34,7 @@
     <string name="err_msg_enter_password">Please, enter password.</string>
     <string name="err_msg_enter_confirm_password">Please, confirm your password..</string>
     <string name="err_msg_password_and_confirm_password_mismatch">Password and confirm password mismatch.</string>
+    <string name="recover_your_password">Recover your password</string>
+    <string name="recover">RECOVER</string>
+    <string name="recover_successfully_msg">We sent you an email, you can change your password there!</string>
 </resources>

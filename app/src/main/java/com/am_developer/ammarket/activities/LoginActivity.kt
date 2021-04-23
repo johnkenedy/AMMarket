@@ -3,6 +3,7 @@ package com.am_developer.ammarket.activities
 import android.os.Bundle
 import com.am_developer.ammarket.R
 import com.am_developer.ammarket.databinding.ActivityLoginBinding
+import com.am_developer.ammarket.fragment.ForgotPasswordFragment
 import com.am_developer.ammarket.fragment.LoginFragment
 import com.am_developer.ammarket.fragment.RegisterFragment
 import com.ismaeldivita.chipnavigation.ChipNavigationBar
@@ -37,6 +38,7 @@ class LoginActivity : BaseActivity() {
                 val fragment = when (id) {
                     R.id.navigation_login -> LoginFragment()
                     R.id.navigation_register -> RegisterFragment()
+                    R.id.navigation_forgot_pasword -> ForgotPasswordFragment()
                     else -> return
                 }
 
