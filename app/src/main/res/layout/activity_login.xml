@@ -8,7 +8,6 @@
         android:layout_height="match_parent"
         tools:context=".activities.LoginActivity">
 
-
         <com.ismaeldivita.chipnavigation.ChipNavigationBar
             android:id="@+id/bottom_nav_register_login"
             android:layout_width="match_parent"

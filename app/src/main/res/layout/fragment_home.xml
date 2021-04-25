@@ -18,17 +18,4 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-<!--    <com.am_developer.ammarket.utils.Typewriter-->
-<!--        android:id="@+id/tv_main"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_marginStart="5dp"-->
-<!--        android:textColor="@color/pink"-->
-<!--        android:maxLength="32"-->
-<!--        android:textSize="16sp"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        app:layout_constraintBottom_toTopOf="@+id/iv_home_banner"-->
-<!--        app:layout_constraintTop_toTopOf="parent"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        tools:text="Exemple de como vai ficar esse texto enorme muito loco" />-->
 </androidx.constraintlayout.widget.ConstraintLayout>

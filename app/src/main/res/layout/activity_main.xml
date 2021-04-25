@@ -56,19 +56,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <com.am_developer.ammarket.utils.Typewriter
-            android:id="@+id/tv_main"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:maxLength="30"
-            android:textColor="@color/pink"
-            android:textSize="16sp"
-            app:layout_constraintBottom_toBottomOf="@id/tb_main"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:text="Exemple de como vai ficar esse texto enorme muito loco" />
-
         <ImageView
             android:id="@+id/imageView"
             android:layout_width="100dp"

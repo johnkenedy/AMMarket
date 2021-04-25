@@ -1,6 +1,6 @@
 package com.am_developer.ammarket.models
 
-data class User(
+class User(
     val id: String = "",
     val name: String = "",
     val email: String = "",

@@ -6,6 +6,7 @@ import android.content.SharedPreferences
 import android.util.Log
 import androidx.fragment.app.Fragment
 import com.am_developer.ammarket.fragment.LoginFragment
+import com.am_developer.ammarket.fragment.ProfileFragment
 import com.am_developer.ammarket.fragment.RegisterFragment
 import com.am_developer.ammarket.models.User
 import com.am_developer.ammarket.utils.Constants
@@ -56,21 +57,28 @@ class FirestoreClass {
                 val user = document.toObject(User::class.java)!!
 
                 val sharedPreferences =
-                fragment.context?.getSharedPreferences(
-                    Constants.AM_PREFERENCES,
-                    Context.MODE_PRIVATE
-                )
+                    fragment.context?.getSharedPreferences(
+                        Constants.AM_PREFERENCES,
+                        Context.MODE_PRIVATE
+                    )
 
                 val editor: SharedPreferences.Editor = sharedPreferences!!.edit()
                 editor.putString(
                     Constants.LOGGED_IN_USERNAME,
-                    "Welcome, ${user.name}!"
+                    user.name
+                )
+                editor.putString(
+                    Constants.LOGGED_IN_EMAIL,
+                    user.email
                 )
                 editor.apply()
 
                 when (fragment) {
                     is LoginFragment -> {
                         fragment.userLoggedInSuccess(user)
+                    }
+                    is ProfileFragment -> {
+                        fragment.userInfo(user)
                     }
                 }
             }

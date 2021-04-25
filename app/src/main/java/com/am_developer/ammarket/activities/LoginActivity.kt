@@ -13,6 +13,7 @@ class LoginActivity : BaseActivity() {
     private lateinit var binding: ActivityLoginBinding
     private lateinit var chipNavigationBar: ChipNavigationBar
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityLoginBinding.inflate(layoutInflater)
@@ -28,9 +29,10 @@ class LoginActivity : BaseActivity() {
         ).commit()
 
         bottomLoginMenu()
+
     }
 
-      private fun bottomLoginMenu() {
+    private fun bottomLoginMenu() {
         chipNavigationBar.setOnItemSelectedListener(object :
             ChipNavigationBar.OnItemSelectedListener {
 
@@ -49,4 +51,6 @@ class LoginActivity : BaseActivity() {
             }
         })
     }
+
+
 }

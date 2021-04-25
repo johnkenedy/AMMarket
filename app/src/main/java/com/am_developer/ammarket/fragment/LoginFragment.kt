@@ -35,7 +35,6 @@ class LoginFragment : BaseFragment() {
     fun userLoggedInSuccess(user: User) {
         hideProgressDialog()
         Log.i("First Name: ", user.name)
-
         startActivity(Intent(context, MainActivity::class.java))
         activity?.finish()
     }
@@ -48,7 +47,10 @@ class LoginFragment : BaseFragment() {
             }
 
             TextUtils.isEmpty(binding.etLoginPassword.text.toString().trim { it <= ' ' }) -> {
-                showSnackBarInFragment(resources.getString(R.string.err_msg_enter_password), true)
+                showSnackBarInFragment(
+                    resources.getString(R.string.err_msg_enter_password),
+                    true
+                )
                 false
             }
             else -> {
