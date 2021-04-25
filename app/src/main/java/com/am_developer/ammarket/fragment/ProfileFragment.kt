@@ -3,8 +3,10 @@ package com.am_developer.ammarket.fragment
 import android.Manifest
 import android.app.Activity
 import android.content.Context
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Bundle
+import android.text.TextUtils
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -16,6 +18,8 @@ import com.am_developer.ammarket.databinding.FragmentProfileBinding
 import com.am_developer.ammarket.firestore.FirestoreClass
 import com.am_developer.ammarket.models.User
 import com.am_developer.ammarket.utils.Constants
+import com.am_developer.ammarket.utils.GlideLoader
+import java.io.IOException
 
 class ProfileFragment : BaseFragment(), View.OnClickListener {
 
@@ -55,6 +59,7 @@ class ProfileFragment : BaseFragment(), View.OnClickListener {
         FirestoreClass().getUserDetails(this)
 
         binding.ivProfileChangeImageProfile.setOnClickListener(this@ProfileFragment)
+        binding.btnProfileSaveChanges.setOnClickListener(this@ProfileFragment)
 
         return root
     }
@@ -63,16 +68,45 @@ class ProfileFragment : BaseFragment(), View.OnClickListener {
         when (view.id) {
             R.id.iv_profile_change_image_profile ->
                 if (
-                        context?.let {
-                            ContextCompat.checkSelfPermission(it, Manifest.permission.READ_EXTERNAL_STORAGE
-                            ) } == PackageManager.PERMISSION_GRANTED) {
-                        showSnackBarInFragment("You alrady have permission", false)
-                      } else {
-                        ActivityCompat.requestPermissions(
-                            context as Activity, arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE),
-                        Constants.READ_STORAGE_PERMISSION_CODE)
+                    context?.let {
+                        ContextCompat.checkSelfPermission(
+                            it, Manifest.permission.READ_EXTERNAL_STORAGE
+                        )
+                    } == PackageManager.PERMISSION_GRANTED) {
+                    Constants.showImageChooser(this@ProfileFragment)
+                } else {
+                    ActivityCompat.requestPermissions(
+                        context as Activity, arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE),
+                        Constants.READ_STORAGE_PERMISSION_CODE
+                    )
                 }
+            R.id.btn_profile_save_changes -> {
+                if (validateUserProfileDetails()) {
+
+                    val userHashMap = HashMap<String, Any>()
+
+                    val mobileNumber =
+                        binding.etRegisterPhoneNumber.text.toString().trim { it <= ' ' }
+
+                    if (mobileNumber.isNotEmpty()) {
+                        userHashMap[Constants.LOGGED_IN_MOBILE] = mobileNumber
+                    }
+
+                    showProgressDialog()
+
+                    FirestoreClass().updateUserProfileData(this, userHashMap)
+
+                }
+            }
         }
+    }
+
+    fun userProfileUpdateSuccess() {
+        hideProgressDialog()
+        showSnackBarInFragment(
+            "Mobile number is updated successfully.",
+            false
+        )
     }
 
     override fun onRequestPermissionsResult(
@@ -83,10 +117,54 @@ class ProfileFragment : BaseFragment(), View.OnClickListener {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         if (requestCode == Constants.READ_STORAGE_PERMISSION_CODE) {
             if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                showSnackBarInFragment("The storage permission is granted.", false)
+                Constants.showImageChooser(this@ProfileFragment)
             } else {
-                showSnackBarInFragment("The storage permission denied. You can also allow it from settings. ", true)
+                showSnackBarInFragment(
+                    "The storage permission denied. You can also allow it from settings. ",
+                    true
+                )
 
+            }
+        }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (resultCode == Activity.RESULT_OK) {
+            if (requestCode == Constants.PICK_IMAGE_REQUEST_CODE) {
+                if (data != null) {
+                    try {
+                        val selectedImageFileUri = data.data
+                        context?.let {
+                            if (selectedImageFileUri != null) {
+                                GlideLoader(it).loadUserPicture(
+                                    selectedImageFileUri,
+                                    binding.ivProfileUserImage
+                                )
+                            }
+                        }
+                    } catch (e: IOException) {
+                        e.printStackTrace()
+                        showSnackBarInFragment("Image selection Failed!", true)
+                    }
+                }
+            }
+        } else if (resultCode == Activity.RESULT_CANCELED) {
+
+        }
+    }
+
+    private fun validateUserProfileDetails(): Boolean {
+        return when {
+            TextUtils.isEmpty(binding.etRegisterPhoneNumber.text.toString().trim { it <= ' ' }) -> {
+                showSnackBarInFragment(
+                    resources.getString(R.string.err_msg_enter_mobile_number),
+                    true
+                )
+                false
+            }
+            else -> {
+                true
             }
         }
     }
@@ -101,6 +179,7 @@ class ProfileFragment : BaseFragment(), View.OnClickListener {
         binding.etRegisterEmail.setText(email)
 
         val cpf = user.cpf.toString()
+        binding.etRegisterCpf.isEnabled = false
         binding.etRegisterCpf.setText(cpf)
 
         val mobile = user.mobile.toString()

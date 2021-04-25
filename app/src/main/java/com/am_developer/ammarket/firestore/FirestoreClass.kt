@@ -73,11 +73,11 @@ class FirestoreClass {
                 )
                 editor.putString(
                     Constants.LOGGED_IN_CPF,
-                    user.email
+                    user.cpf.toString()
                 )
                 editor.putString(
                     Constants.LOGGED_IN_MOBILE,
-                    user.email
+                    user.mobile.toString()
                 )
                 editor.apply()
 
@@ -100,6 +100,34 @@ class FirestoreClass {
                     fragment.javaClass.simpleName,
                     "Error while getting user details.",
                     e
+                )
+
+            }
+    }
+
+    fun updateUserProfileData(fragment: Fragment, userHashMap: HashMap<String, Any>) {
+        mFireStore.collection(Constants.USERS)
+            .document(getCurrentUserID())
+            .update(userHashMap)
+            .addOnSuccessListener {
+
+                when (fragment) {
+                    is ProfileFragment -> {
+                        fragment.userProfileUpdateSuccess()
+                    }
+                }
+
+            }
+            .addOnFailureListener { e ->
+                when (fragment) {
+                    is ProfileFragment -> {
+                        fragment.hideProgressDialog()
+                    }
+                }
+
+                Log.e(
+                    fragment.javaClass.simpleName,
+                    "Error while updating the user details.", e
                 )
 
             }

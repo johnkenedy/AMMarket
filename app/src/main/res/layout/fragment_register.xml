@@ -53,6 +53,36 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/til_register_cpf"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:hint="@string/cpf"
+        app:boxCornerRadiusBottomEnd="30dp"
+        app:boxCornerRadiusBottomStart="30dp"
+        app:boxCornerRadiusTopEnd="30dp"
+        app:boxCornerRadiusTopStart="30dp"
+        app:hintTextAppearance="@style/AMMarkek_font_title_thin"
+        app:hintTextColor="@color/pink"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/til_register_name"
+        app:layout_constraintWidth_percent=".9"
+        app:startIconDrawable="@drawable/ic_document"
+        app:startIconTint="@color/pink">
+
+        <EditText
+            android:id="@+id/et_register_cpf"
+            style="@style/AMMarkek_font_title"
+            android:layout_width="match_parent"
+            android:inputType="number"
+            android:layout_height="match_parent"
+            android:textColor="@color/pink" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/til_register_email"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="0dp"
@@ -67,7 +97,7 @@
         app:hintTextColor="@color/pink"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/til_register_name"
+        app:layout_constraintTop_toBottomOf="@+id/til_register_cpf"
         app:layout_constraintWidth_percent=".9"
         app:startIconDrawable="@drawable/ic_email"
         app:startIconTint="@color/pink">

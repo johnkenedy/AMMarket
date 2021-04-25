@@ -40,6 +40,14 @@ class RegisterFragment : BaseFragment() {
                 false
             }
 
+            TextUtils.isEmpty(binding.etRegisterCpf.text.toString().trim { it <= ' ' }) -> {
+                showSnackBarInFragment(
+                    resources.getString(R.string.err_msg_enter_cpf),
+                    true
+                )
+                false
+            }
+
             TextUtils.isEmpty(binding.etRegisterEmail.text.toString().trim { it <= ' ' }) -> {
                 showSnackBarInFragment(
                     resources.getString(R.string.err_msg_enter_email),
@@ -106,7 +114,8 @@ class RegisterFragment : BaseFragment() {
                         val user = User(
                             firebaseUser.uid,
                             binding.etRegisterName.text.toString().trim { it <= ' ' },
-                            binding.etRegisterEmail.text.toString().trim { it <= ' ' }
+                            binding.etRegisterEmail.text.toString().trim { it <= ' ' },
+                            binding.etRegisterCpf.text.toString().toLong()
                         )
 
                         FirestoreClass().registerUser(this@RegisterFragment, user)
@@ -124,7 +133,7 @@ class RegisterFragment : BaseFragment() {
         showSnackBarInFragment(resources.getString(R.string.register_success), false)
         activity?.supportFragmentManager?.beginTransaction()?.replace(
             R.id.login_fragment_container,
-            LoginFragment(),
+            LoginFragment()
         )?.commit()
     }
 
