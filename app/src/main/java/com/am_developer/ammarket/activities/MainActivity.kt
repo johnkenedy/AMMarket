@@ -3,13 +3,12 @@ package com.am_developer.ammarket.activities
 import android.os.Bundle
 import android.view.View
 import android.view.animation.AnimationUtils
-import androidx.appcompat.app.AppCompatActivity
 import com.am_developer.ammarket.R
 import com.am_developer.ammarket.databinding.ActivityMainBinding
 import com.am_developer.ammarket.fragment.*
 import com.ismaeldivita.chipnavigation.ChipNavigationBar
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : BaseActivity() {
 
     private lateinit var binding: ActivityMainBinding
 
@@ -98,4 +97,9 @@ class MainActivity : AppCompatActivity() {
 
         }
     }
+
+    override fun onBackPressed() {
+        doubleBackToExit()
+    }
+
 }

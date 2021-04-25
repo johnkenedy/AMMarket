@@ -3,6 +3,7 @@ package com.am_developer.ammarket.firestore
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.SharedPreferences
+import android.net.Uri
 import android.util.Log
 import androidx.fragment.app.Fragment
 import com.am_developer.ammarket.fragment.LoginFragment
@@ -13,6 +14,8 @@ import com.am_developer.ammarket.utils.Constants
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.SetOptions
+import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.StorageReference
 
 class FirestoreClass {
 
@@ -130,6 +133,43 @@ class FirestoreClass {
                     "Error while updating the user details.", e
                 )
 
+            }
+    }
+
+    fun uploadImageToCloudStorage(fragment: Fragment, imageFileURI: Uri?) {
+        val sRef: StorageReference = FirebaseStorage.getInstance().reference.child(
+            Constants.USER_PROFILE_IMAGE + System.currentTimeMillis() + "." +
+                    Constants.getFileExtension(fragment, imageFileURI)
+        )
+
+        sRef.putFile(imageFileURI!!).addOnSuccessListener { taskSnapshot ->
+            Log.e(
+                "Firebase Image URL",
+                taskSnapshot.metadata!!.reference!!.downloadUrl.toString()
+            )
+
+            taskSnapshot.metadata!!.reference!!.downloadUrl
+                .addOnSuccessListener { uri ->
+                    Log.e("Downloadable Image URL", uri.toString())
+                    when (fragment) {
+                        is ProfileFragment -> {
+                            fragment.imageUploadSuccess(uri.toString())
+                        }
+                    }
+                }
+        }
+            .addOnFailureListener { exception ->
+                when (fragment) {
+                    is ProfileFragment -> {
+                        fragment.hideProgressDialog()
+                    }
+                }
+
+                Log.e(
+                    fragment.javaClass.simpleName,
+                    exception.message,
+                    exception
+                )
             }
     }
 

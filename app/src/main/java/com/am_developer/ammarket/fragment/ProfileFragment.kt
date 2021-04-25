@@ -5,6 +5,7 @@ import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.net.Uri
 import android.os.Bundle
 import android.text.TextUtils
 import android.util.Log
@@ -28,6 +29,9 @@ class ProfileFragment : BaseFragment(), View.OnClickListener {
     // This property is only valid between onCreateView and
     // onDestroyView.
     private val binding get() = _binding!!
+
+    private var mSelectedImageFileUri: Uri? = null
+    private var mUserProfileImageURL: String = ""
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -81,30 +85,43 @@ class ProfileFragment : BaseFragment(), View.OnClickListener {
                     )
                 }
             R.id.btn_profile_save_changes -> {
+
                 if (validateUserProfileDetails()) {
-
-                    val userHashMap = HashMap<String, Any>()
-
-                    val mobileNumber =
-                        binding.etRegisterPhoneNumber.text.toString().trim { it <= ' ' }
-
-                    if (mobileNumber.isNotEmpty()) {
-                        userHashMap[Constants.LOGGED_IN_MOBILE] = mobileNumber
-                    }
-
                     showProgressDialog()
 
-                    FirestoreClass().updateUserProfileData(this, userHashMap)
-
+                    if (mSelectedImageFileUri != null)
+                        FirestoreClass().uploadImageToCloudStorage(
+                            this@ProfileFragment,
+                            mSelectedImageFileUri
+                        )
+                } else {
+                    updateUserProfileDetails()
                 }
             }
         }
     }
 
+    private fun updateUserProfileDetails() {
+        val userHashMap = HashMap<String, Any>()
+
+        if (mUserProfileImageURL.isNotEmpty()) {
+            userHashMap[Constants.IMAGE] = mUserProfileImageURL
+        }
+
+        val mobileNumber =
+            binding.etRegisterPhoneNumber.text.toString().trim { it <= ' ' }
+
+        if (mobileNumber.isNotEmpty()) {
+            userHashMap[Constants.LOGGED_IN_MOBILE] = mobileNumber
+        }
+
+        FirestoreClass().updateUserProfileData(this, userHashMap)
+    }
+
     fun userProfileUpdateSuccess() {
         hideProgressDialog()
         showSnackBarInFragment(
-            "Mobile number is updated successfully.",
+            "Profile updated successfully.",
             false
         )
     }
@@ -134,11 +151,11 @@ class ProfileFragment : BaseFragment(), View.OnClickListener {
             if (requestCode == Constants.PICK_IMAGE_REQUEST_CODE) {
                 if (data != null) {
                     try {
-                        val selectedImageFileUri = data.data
+                        mSelectedImageFileUri = data.data
                         context?.let {
-                            if (selectedImageFileUri != null) {
+                            if (mSelectedImageFileUri != null) {
                                 GlideLoader(it).loadUserPicture(
-                                    selectedImageFileUri,
+                                    mSelectedImageFileUri!!,
                                     binding.ivProfileUserImage
                                 )
                             }
@@ -167,6 +184,11 @@ class ProfileFragment : BaseFragment(), View.OnClickListener {
                 true
             }
         }
+    }
+
+    fun imageUploadSuccess(imageURL: String) {
+        mUserProfileImageURL = imageURL
+        updateUserProfileDetails()
     }
 
     fun userInfo(user: User) {
