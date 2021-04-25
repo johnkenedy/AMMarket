@@ -30,6 +30,7 @@ class MainActivity : BaseActivity() {
         supportFragmentManager.beginTransaction().replace(R.id.fragment_container, HomeFragment())
             .commit()
 
+
         val infinity = AnimationUtils.loadAnimation(this, R.anim.infinity)
         binding.infinity.animation = infinity
 
@@ -72,6 +73,7 @@ class MainActivity : BaseActivity() {
                     R.id.navigation_coupon -> CouponFragment()
                     R.id.navigation_list -> ShoppingListFragment()
                     R.id.navigation_store -> StoresFragment()
+                    R.id.navigation_logout -> LogoutFragment()
 
                     else -> return
                 }
@@ -97,6 +99,8 @@ class MainActivity : BaseActivity() {
 
         }
     }
+
+
 
     override fun onBackPressed() {
         doubleBackToExit()
