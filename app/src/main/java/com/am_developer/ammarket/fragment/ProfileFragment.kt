@@ -207,11 +207,23 @@ class ProfileFragment : BaseFragment(), View.OnClickListener {
         val mobile = user.mobile.toString()
         binding.etRegisterPhoneNumber.setText(mobile)
 
+        context?.let { GlideLoader(it).loadUserPicture(
+                user.image, binding.ivProfileUserImage
+        )
+        }
+
+
         Log.i("xdre", "$name my name is ${user.name}")
+    }
+
+    override fun onResume() {
+        super.onResume()
+        FirestoreClass().getUserDetails(this)
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
     }
+
 }

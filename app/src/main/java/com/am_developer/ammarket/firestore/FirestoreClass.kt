@@ -80,7 +80,7 @@ class FirestoreClass {
                 )
                 editor.putString(
                     Constants.LOGGED_IN_MOBILE,
-                    user.mobile.toString()
+                    user.mobile
                 )
                 editor.apply()
 
@@ -96,6 +96,9 @@ class FirestoreClass {
             .addOnFailureListener { e ->
                 when (fragment) {
                     is LoginFragment -> {
+                        fragment.hideProgressDialog()
+                    }
+                    is ProfileFragment -> {
                         fragment.hideProgressDialog()
                     }
                 }
