@@ -71,6 +71,14 @@ class FirestoreClass {
                     Constants.LOGGED_IN_EMAIL,
                     user.email
                 )
+                editor.putString(
+                    Constants.LOGGED_IN_CPF,
+                    user.email
+                )
+                editor.putString(
+                    Constants.LOGGED_IN_MOBILE,
+                    user.email
+                )
                 editor.apply()
 
                 when (fragment) {

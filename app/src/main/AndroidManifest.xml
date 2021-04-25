@@ -4,6 +4,7 @@
     package="com.am_developer.ammarket">
 
     <permission android:name="READ_PHONE_STATE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     
     <application
         android:allowBackup="true"

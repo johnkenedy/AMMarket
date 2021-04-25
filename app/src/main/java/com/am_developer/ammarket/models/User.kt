@@ -6,5 +6,6 @@ class User(
     val email: String = "",
     val image: String = "",
     val mobile: Long = 0,
+    val cpf: Long = 0,
     val profileCompleted: Int = 0
 )
