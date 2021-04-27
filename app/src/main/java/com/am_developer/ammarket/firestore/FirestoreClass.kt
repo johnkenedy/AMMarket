@@ -70,18 +70,6 @@ class FirestoreClass {
                     Constants.LOGGED_IN_USERNAME,
                     user.name
                 )
-                editor.putString(
-                    Constants.LOGGED_IN_EMAIL,
-                    user.email
-                )
-                editor.putString(
-                    Constants.LOGGED_IN_CPF,
-                    user.cpf.toString()
-                )
-                editor.putString(
-                    Constants.LOGGED_IN_MOBILE,
-                    user.mobile
-                )
                 editor.apply()
 
                 when (fragment) {
@@ -89,7 +77,7 @@ class FirestoreClass {
                         fragment.userLoggedInSuccess(user)
                     }
                     is ProfileFragment -> {
-                        fragment.userInfo(user)
+                        fragment.userDetailsSuccess(user)
                     }
                 }
             }

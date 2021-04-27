@@ -30,7 +30,6 @@ class MainActivity : BaseActivity() {
         supportFragmentManager.beginTransaction().replace(R.id.fragment_container, HomeFragment())
             .commit()
 
-
         val infinity = AnimationUtils.loadAnimation(this, R.anim.infinity)
         binding.infinity.animation = infinity
 
@@ -59,6 +58,12 @@ class MainActivity : BaseActivity() {
                     R.id.fragment_container,
                     fragment
                 ).commit()
+
+                verticalChipNavigationBar.setItemSelected(R.id.navigation_search, false)
+                verticalChipNavigationBar.setItemSelected(R.id.navigation_cart, false)
+                verticalChipNavigationBar.setItemSelected(R.id.navigation_coupon, false)
+                verticalChipNavigationBar.setItemSelected(R.id.navigation_list, false)
+                verticalChipNavigationBar.setItemSelected(R.id.navigation_address, false)
             }
         })
     }
@@ -79,8 +84,14 @@ class MainActivity : BaseActivity() {
                 }
                 supportFragmentManager.beginTransaction().replace(R.id.fragment_container, fragment)
                     .commit()
+
+                chipNavigationBar.setItemSelected(R.id.navigation_home, false)
+                chipNavigationBar.setItemSelected(R.id.navigation_shopping, false)
+                chipNavigationBar.setItemSelected(R.id.navigation_wishlist, false)
+                chipNavigationBar.setItemSelected(R.id.navigation_profile, false)
             }
         })
+
     }
 
     private fun btnMenuAnimation() {
@@ -99,8 +110,6 @@ class MainActivity : BaseActivity() {
 
         }
     }
-
-
 
     override fun onBackPressed() {
         doubleBackToExit()

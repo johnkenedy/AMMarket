@@ -2,13 +2,11 @@ package com.am_developer.ammarket.fragment
 
 import android.Manifest
 import android.app.Activity
-import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
 import android.text.TextUtils
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -41,26 +39,6 @@ class ProfileFragment : BaseFragment(), View.OnClickListener {
 
         _binding = FragmentProfileBinding.inflate(inflater, container, false)
         val root: View = binding.root
-
-        val usernameSharedPreferences =
-            context?.getSharedPreferences(Constants.LOGGED_IN_USERNAME, Context.MODE_PRIVATE)
-        val name = usernameSharedPreferences?.getString(Constants.LOGGED_IN_USERNAME, "")
-
-        val emailSharedPreferences =
-            context?.getSharedPreferences(Constants.LOGGED_IN_EMAIL, Context.MODE_PRIVATE)
-        val email = emailSharedPreferences?.getString(Constants.LOGGED_IN_EMAIL, "")
-
-        val cpfSharedPreferences =
-            context?.getSharedPreferences(Constants.LOGGED_IN_CPF, Context.MODE_PRIVATE)
-        val cpf = cpfSharedPreferences?.getString(Constants.LOGGED_IN_CPF, "")
-
-        val mobileSharedPreferences =
-            context?.getSharedPreferences(Constants.LOGGED_IN_MOBILE, Context.MODE_PRIVATE)
-        val mobile = mobileSharedPreferences?.getString(Constants.LOGGED_IN_MOBILE, "")
-
-        Log.i("PFName", "$name the email is $email")
-
-        FirestoreClass().getUserDetails(this)
 
         binding.ivProfileChangeImageProfile.setOnClickListener(this@ProfileFragment)
         binding.btnProfileSaveChanges.setOnClickListener(this@ProfileFragment)
@@ -191,34 +169,26 @@ class ProfileFragment : BaseFragment(), View.OnClickListener {
         updateUserProfileDetails()
     }
 
-    fun userInfo(user: User) {
-        val name = user.name
+    private fun getUserDetails() {
+        showProgressDialog()
+        FirestoreClass().getUserDetails(this)
+    }
+
+    fun userDetailsSuccess(user: User) {
+        hideProgressDialog()
+        context?.let { GlideLoader(it).loadUserPicture(user.image, binding.ivProfileUserImage) }
+        binding.etProfileName.setText(user.name)
         binding.etProfileName.isEnabled = false
-        binding.etProfileName.setText(name)
-
-        val email = user.email
-        binding.etRegisterEmail.isEnabled = false
-        binding.etRegisterEmail.setText(email)
-
-        val cpf = user.cpf.toString()
+        binding.etRegisterCpf.setText(user.cpf.toString())
         binding.etRegisterCpf.isEnabled = false
-        binding.etRegisterCpf.setText(cpf)
-
-        val mobile = user.mobile.toString()
-        binding.etRegisterPhoneNumber.setText(mobile)
-
-        context?.let { GlideLoader(it).loadUserPicture(
-                user.image, binding.ivProfileUserImage
-        )
-        }
-
-
-        Log.i("xdre", "$name my name is ${user.name}")
+        binding.etRegisterEmail.setText(user.email)
+        binding.etRegisterEmail.isEnabled = false
+        binding.etRegisterPhoneNumber.setText(user.mobile)
     }
 
     override fun onResume() {
         super.onResume()
-        FirestoreClass().getUserDetails(this)
+        getUserDetails()
     }
 
     override fun onDestroyView() {

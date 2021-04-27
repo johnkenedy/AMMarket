@@ -4,18 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#D85B61"
     tools:context=".fragment.LogoutFragment">
-
-    <pl.droidsonroids.gif.GifImageView
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:padding="40dp"
-        android:src="@drawable/bye_screen"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     <TextView
         android:id="@+id/textView"
@@ -23,7 +12,7 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:text="@string/thank_you_for_your_business"
-        android:textColor="@color/white"
+        android:textColor="@color/pink"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
