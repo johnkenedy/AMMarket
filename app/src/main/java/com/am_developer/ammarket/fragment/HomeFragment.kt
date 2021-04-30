@@ -1,13 +1,15 @@
 package com.am_developer.ammarket.fragment
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import com.am_developer.ammarket.databinding.FragmentHomeBinding
+import com.am_developer.ammarket.firestore.FirestoreClass
+import com.am_developer.ammarket.models.Product
 
-class HomeFragment : Fragment() {
+class HomeFragment : BaseFragment() {
 
     private lateinit var binding: FragmentHomeBinding
 
@@ -22,4 +24,23 @@ class HomeFragment : Fragment() {
 
         return binding.root
     }
+
+    fun successProductsListFromFireStore(productList: ArrayList<Product>) {
+        hideProgressDialog()
+
+        for (i in productList) {
+            Log.i("Product Name", i.title)
+        }
+    }
+
+    private fun getProductListFromFireStore() {
+        showProgressDialog()
+        FirestoreClass().getProductsList(this)
+    }
+
+    override fun onResume() {
+        super.onResume()
+        getProductListFromFireStore()
+    }
+
 }

@@ -6,9 +6,11 @@ import android.content.SharedPreferences
 import android.net.Uri
 import android.util.Log
 import androidx.fragment.app.Fragment
+import com.am_developer.ammarket.fragment.HomeFragment
 import com.am_developer.ammarket.fragment.LoginFragment
 import com.am_developer.ammarket.fragment.ProfileFragment
 import com.am_developer.ammarket.fragment.RegisterFragment
+import com.am_developer.ammarket.models.Product
 import com.am_developer.ammarket.models.User
 import com.am_developer.ammarket.utils.Constants
 import com.google.firebase.auth.FirebaseAuth
@@ -161,6 +163,27 @@ class FirestoreClass {
                     exception.message,
                     exception
                 )
+            }
+    }
+
+    fun getProductsList(fragment: Fragment) {
+        mFireStore.collection(Constants.PRODUCTS)
+            .get()
+            .addOnSuccessListener { document ->
+                Log.e("Products List", document.documents.toString())
+                val productsList: ArrayList<Product> = ArrayList()
+                for (i in document.documents) {
+
+                    val product = i.toObject(Product::class.java)
+                    product!!.product_id = i.id
+                    productsList.add(product)
+                }
+
+                when (fragment) {
+                    is HomeFragment ->
+                        fragment.successProductsListFromFireStore(productsList)
+                }
+
             }
     }
 
