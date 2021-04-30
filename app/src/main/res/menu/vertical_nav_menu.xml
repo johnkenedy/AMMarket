@@ -39,7 +39,7 @@
         app:cnb_textColor="@color/pink_light"/>
 
     <item
-        android:id="@+id/navigation_store"
+        android:id="@+id/navigation_address"
         android:icon="@drawable/place"
         android:title="@string/title_stores"
         app:cnb_backgroundColor="@color/white"

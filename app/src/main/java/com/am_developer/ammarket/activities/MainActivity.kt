@@ -48,7 +48,7 @@ class MainActivity : BaseActivity() {
             override fun onItemSelected(id: Int) {
                 val fragment = when (id) {
                     R.id.navigation_home -> HomeFragment()
-                    R.id.navigation_shopping -> CartFragment()
+                    R.id.navigation_shopping -> ShoppingFragment()
                     R.id.navigation_wishlist -> FavoriteFragment()
                     R.id.navigation_profile -> ProfileFragment()
 
@@ -77,7 +77,7 @@ class MainActivity : BaseActivity() {
                     R.id.navigation_cart -> ShoppingFragment()
                     R.id.navigation_coupon -> CouponFragment()
                     R.id.navigation_list -> ShoppingListFragment()
-                    R.id.navigation_store -> StoresFragment()
+                    R.id.navigation_address -> AddressFragment()
                     R.id.navigation_logout -> LogoutFragment()
 
                     else -> return

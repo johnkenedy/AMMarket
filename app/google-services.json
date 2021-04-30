@@ -1,41 +1,78 @@
 {
   "project_info": {
-    "project_number": "840432820901",
-    "project_id": "ammarket-eb589",
-    "storage_bucket": "ammarket-eb589.appspot.com"
+    "project_number": "236711338089",
+    "project_id": "ammarket-ef2bb",
+    "storage_bucket": "ammarket-ef2bb.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:840432820901:android:fbfb1a2e34e40de4eda34c",
+        "mobilesdk_app_id": "1:236711338089:android:0b3dffe3355d27f4d602f8",
         "android_client_info": {
           "package_name": "com.am_developer.ammarket"
         }
       },
       "oauth_client": [
         {
-          "client_id": "840432820901-7mp9ede5sv47p073k92drvv92gbktodo.apps.googleusercontent.com",
+          "client_id": "236711338089-mlt8dl1msve25oq4usjj0027aj4ja9hb.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.am_developer.ammarket",
-            "certificate_hash": "37dd8dd27165783b6be9eabcaab51185c10dd9ee"
+            "certificate_hash": "9d206a0433ab9d5cd91ae340263c0430617f8500"
           }
         },
         {
-          "client_id": "840432820901-1ggs3r5q2fa62l9sir51rkculupn31ib.apps.googleusercontent.com",
+          "client_id": "236711338089-6fun15j1b6gc5sv7n1vh6pj4369fqjkr.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyCPKs2MUd-TIT3G2D7cfTcvvn19kEs0Ung"
+          "current_key": "AIzaSyCMs5QR47EpqlIZYwMyvX9opKn_GBLORdI"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "840432820901-1ggs3r5q2fa62l9sir51rkculupn31ib.apps.googleusercontent.com",
+              "client_id": "236711338089-6fun15j1b6gc5sv7n1vh6pj4369fqjkr.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:236711338089:android:e0e9ec1fa5bbc58dd602f8",
+        "android_client_info": {
+          "package_name": "com.example.ammarketadmin"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "236711338089-mopg9m0hopfgep2ikda8pfdr5lh047ma.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.ammarketadmin",
+            "certificate_hash": "9d206a0433ab9d5cd91ae340263c0430617f8500"
+          }
+        },
+        {
+          "client_id": "236711338089-6fun15j1b6gc5sv7n1vh6pj4369fqjkr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCMs5QR47EpqlIZYwMyvX9opKn_GBLORdI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "236711338089-6fun15j1b6gc5sv7n1vh6pj4369fqjkr.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

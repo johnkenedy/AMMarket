@@ -13,6 +13,7 @@ import android.view.ViewGroup
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.am_developer.ammarket.R
+import com.am_developer.ammarket.activities.MainActivity
 import com.am_developer.ammarket.databinding.FragmentProfileBinding
 import com.am_developer.ammarket.firestore.FirestoreClass
 import com.am_developer.ammarket.models.User
@@ -98,6 +99,8 @@ class ProfileFragment : BaseFragment(), View.OnClickListener {
 
     fun userProfileUpdateSuccess() {
         hideProgressDialog()
+        MainActivity().supportFragmentManager.beginTransaction().replace(R.id.fragment_container, HomeFragment())
+            .commit()
         showSnackBarInFragment(
             "Profile updated successfully.",
             false

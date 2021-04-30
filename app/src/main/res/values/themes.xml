@@ -24,4 +24,11 @@
         <item name="fontFamily">@font/alegreya_sc</item>
     </style>
 
+    <style name="bolt_font_home_product">
+        <item name="fontFamily">@font/rozha_one</item>
+    </style>
+
+
+
+
 </resources>
