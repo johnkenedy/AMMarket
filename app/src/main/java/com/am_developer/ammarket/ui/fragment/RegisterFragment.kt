@@ -1,4 +1,4 @@
-package com.am_developer.ammarket.fragment
+package com.am_developer.ammarket.ui.fragment
 
 import android.os.Bundle
 import android.text.TextUtils

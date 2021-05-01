@@ -1,4 +1,4 @@
-package com.am_developer.ammarket.fragment
+package com.am_developer.ammarket.ui.fragment
 
 import android.Manifest
 import android.app.Activity
@@ -13,7 +13,7 @@ import android.view.ViewGroup
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.am_developer.ammarket.R
-import com.am_developer.ammarket.activities.MainActivity
+import com.am_developer.ammarket.ui.activities.MainActivity
 import com.am_developer.ammarket.databinding.FragmentProfileBinding
 import com.am_developer.ammarket.firestore.FirestoreClass
 import com.am_developer.ammarket.models.User

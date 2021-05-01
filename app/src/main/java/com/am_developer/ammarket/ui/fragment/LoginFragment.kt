@@ -1,4 +1,4 @@
-package com.am_developer.ammarket.fragment
+package com.am_developer.ammarket.ui.fragment
 
 import android.content.Intent
 import android.os.Bundle
@@ -8,7 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.am_developer.ammarket.R
-import com.am_developer.ammarket.activities.MainActivity
+import com.am_developer.ammarket.ui.activities.MainActivity
 import com.am_developer.ammarket.databinding.FragmentLoginBinding
 import com.am_developer.ammarket.firestore.FirestoreClass
 import com.am_developer.ammarket.models.User

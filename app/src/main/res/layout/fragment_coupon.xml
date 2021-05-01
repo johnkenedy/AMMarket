@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:paddingTop="?attr/actionBarSize"
     android:layout_height="match_parent"
-    tools:context=".fragment.CouponFragment">
+    tools:context=".ui.fragment.CouponFragment">
 
     <!-- TODO: Update blank fragment layout -->
     <TextView

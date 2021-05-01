@@ -6,12 +6,12 @@ import android.content.SharedPreferences
 import android.net.Uri
 import android.util.Log
 import androidx.fragment.app.Fragment
-import com.am_developer.ammarket.fragment.HomeFragment
-import com.am_developer.ammarket.fragment.LoginFragment
-import com.am_developer.ammarket.fragment.ProfileFragment
-import com.am_developer.ammarket.fragment.RegisterFragment
 import com.am_developer.ammarket.models.Product
 import com.am_developer.ammarket.models.User
+import com.am_developer.ammarket.ui.fragment.HomeFragment
+import com.am_developer.ammarket.ui.fragment.LoginFragment
+import com.am_developer.ammarket.ui.fragment.ProfileFragment
+import com.am_developer.ammarket.ui.fragment.RegisterFragment
 import com.am_developer.ammarket.utils.Constants
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore

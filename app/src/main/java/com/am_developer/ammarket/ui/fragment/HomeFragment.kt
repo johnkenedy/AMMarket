@@ -1,18 +1,18 @@
-package com.am_developer.ammarket.fragment
+package com.am_developer.ammarket.ui.fragment
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.GridLayoutManager
 import com.am_developer.ammarket.databinding.FragmentHomeBinding
 import com.am_developer.ammarket.firestore.FirestoreClass
 import com.am_developer.ammarket.models.Product
+import com.am_developer.ammarket.ui.adapter.HomeProductsListAdapter
 
 class HomeFragment : BaseFragment() {
 
-    private lateinit var binding: FragmentHomeBinding
-
+    lateinit var binding: FragmentHomeBinding
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -28,9 +28,10 @@ class HomeFragment : BaseFragment() {
     fun successProductsListFromFireStore(productList: ArrayList<Product>) {
         hideProgressDialog()
 
-        for (i in productList) {
-            Log.i("Product Name", i.title)
-        }
+        binding.rvHomeProducts.layoutManager = GridLayoutManager(activity, 2)
+        binding.rvHomeProducts.setHasFixedSize(true)
+        val adapterProducts = HomeProductsListAdapter(requireActivity(), productList)
+        binding.rvHomeProducts.adapter = adapterProducts
     }
 
     private fun getProductListFromFireStore() {

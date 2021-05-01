@@ -1,11 +1,11 @@
-package com.am_developer.ammarket.activities
+package com.am_developer.ammarket.ui.activities
 
 import android.os.Bundle
 import com.am_developer.ammarket.R
 import com.am_developer.ammarket.databinding.ActivityLoginBinding
-import com.am_developer.ammarket.fragment.ForgotPasswordFragment
-import com.am_developer.ammarket.fragment.LoginFragment
-import com.am_developer.ammarket.fragment.RegisterFragment
+import com.am_developer.ammarket.ui.fragment.ForgotPasswordFragment
+import com.am_developer.ammarket.ui.fragment.LoginFragment
+import com.am_developer.ammarket.ui.fragment.RegisterFragment
 import com.ismaeldivita.chipnavigation.ChipNavigationBar
 
 class LoginActivity : BaseActivity() {

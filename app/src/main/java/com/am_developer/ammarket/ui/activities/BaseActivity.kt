@@ -1,4 +1,4 @@
-package com.am_developer.ammarket.activities
+package com.am_developer.ammarket.ui.activities
 
 import android.os.Handler
 import androidx.appcompat.app.AppCompatActivity

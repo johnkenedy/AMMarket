@@ -1,4 +1,4 @@
-package com.am_developer.ammarket.fragment
+package com.am_developer.ammarket.ui.fragment
 
 import android.content.Intent
 import android.os.Bundle
@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.am_developer.ammarket.R
-import com.am_developer.ammarket.activities.LoginActivity
+import com.am_developer.ammarket.ui.activities.LoginActivity
 import com.google.firebase.auth.FirebaseAuth
 
 class LogoutFragment : Fragment() {

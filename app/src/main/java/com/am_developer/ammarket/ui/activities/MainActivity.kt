@@ -1,11 +1,11 @@
-package com.am_developer.ammarket.activities
+package com.am_developer.ammarket.ui.activities
 
 import android.os.Bundle
 import android.view.View
 import android.view.animation.AnimationUtils
 import com.am_developer.ammarket.R
 import com.am_developer.ammarket.databinding.ActivityMainBinding
-import com.am_developer.ammarket.fragment.*
+import com.am_developer.ammarket.ui.fragment.*
 import com.ismaeldivita.chipnavigation.ChipNavigationBar
 
 class MainActivity : BaseActivity() {
