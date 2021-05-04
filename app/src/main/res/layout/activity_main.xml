@@ -87,7 +87,7 @@
             android:layout_height="58dp"
             android:layout_alignParentBottom="true"
             android:layout_gravity="bottom"
-            android:layout_margin="15dp"
+            android:layout_margin="12dp"
             android:background="@drawable/round_corners"
             android:elevation="6dp"
             app:cnb_iconSize="20dp"

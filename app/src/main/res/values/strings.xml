@@ -52,5 +52,6 @@
 
     <string name="please_click_back_again_to_exit">Please, click back again to exit.</string>
     <string name="thank_you_for_your_business">Thank you for your business</string>
+    <string name="rv_home_title">Just today</string>
 
 </resources>
