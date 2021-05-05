@@ -13,10 +13,10 @@ import android.view.ViewGroup
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.am_developer.ammarket.R
-import com.am_developer.ammarket.ui.activities.MainActivity
 import com.am_developer.ammarket.databinding.FragmentProfileBinding
 import com.am_developer.ammarket.firestore.FirestoreClass
 import com.am_developer.ammarket.models.User
+import com.am_developer.ammarket.ui.activities.MainActivity
 import com.am_developer.ammarket.utils.Constants
 import com.am_developer.ammarket.utils.GlideLoader
 import java.io.IOException
@@ -67,7 +67,6 @@ class ProfileFragment : BaseFragment(), View.OnClickListener {
 
                 if (validateUserProfileDetails()) {
                     showProgressDialog()
-
                     if (mSelectedImageFileUri != null)
                         FirestoreClass().uploadImageToCloudStorage(
                             this@ProfileFragment,
@@ -99,8 +98,7 @@ class ProfileFragment : BaseFragment(), View.OnClickListener {
 
     fun userProfileUpdateSuccess() {
         hideProgressDialog()
-        MainActivity().supportFragmentManager.beginTransaction().replace(R.id.fragment_container, HomeFragment())
-            .commit()
+        startActivity(Intent(activity, MainActivity::class.java))
         showSnackBarInFragment(
             "Profile updated successfully.",
             false
