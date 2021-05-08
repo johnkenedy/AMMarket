@@ -3,9 +3,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.am_developer.ammarket">
 
-    <permission android:name="READ_PHONE_STATE"/>
+    <permission android:name="READ_PHONE_STATE" />
+
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -14,12 +15,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AMMarket"
         tools:ignore="LockedOrientationActivity">
-
         <activity
-            android:name="com.am_developer.ammarket.ui.activities.BaseActivity"
+            android:name=".ui.activities.BaseActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.am_developer.ammarket.ui.activities.SplashActivity"
+            android:name=".ui.activities.SplashActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -27,17 +27,23 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity
-            android:name="com.am_developer.ammarket.ui.activities.LoginActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name="com.am_developer.ammarket.ui.activities.MainActivity"
+            android:name=".ui.activities.MainActivity"
             android:label="@string/title_activity_main"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".ui.activities.LoginActivity"
+            android:screenOrientation="portrait" />
+
+        <activity android:name=".ui.activities.ProductDetailsActivity"
             android:screenOrientation="portrait" />
 
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
+
     </application>
 
 </manifest>

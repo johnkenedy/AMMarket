@@ -2,6 +2,7 @@ package com.am_developer.ammarket.ui.adapter
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,6 +10,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.am_developer.ammarket.R
 import com.am_developer.ammarket.models.Product
+import com.am_developer.ammarket.ui.activities.ProductDetailsActivity
 import com.am_developer.ammarket.utils.GlideLoader
 
 open class TrendingProductsListAdapter(
@@ -35,6 +37,9 @@ open class TrendingProductsListAdapter(
                 model.title
             holder.itemView.findViewById<TextView>(R.id.tv_home_product_price).text =
                 "$${model.price}"
+            holder.itemView.setOnClickListener {
+                context.startActivity(Intent(context, ProductDetailsActivity::class.java))
+            }
         }
     }
 

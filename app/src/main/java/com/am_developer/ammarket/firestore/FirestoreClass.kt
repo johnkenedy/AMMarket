@@ -1,6 +1,7 @@
 package com.am_developer.ammarket.firestore
 
 import android.annotation.SuppressLint
+import android.app.Activity
 import android.content.Context
 import android.content.SharedPreferences
 import android.net.Uri
@@ -8,6 +9,7 @@ import android.util.Log
 import androidx.fragment.app.Fragment
 import com.am_developer.ammarket.models.Product
 import com.am_developer.ammarket.models.User
+import com.am_developer.ammarket.ui.activities.ProductDetailsActivity
 import com.am_developer.ammarket.ui.fragment.*
 import com.am_developer.ammarket.utils.Constants
 import com.google.firebase.auth.FirebaseAuth
@@ -181,6 +183,28 @@ class FirestoreClass {
                         fragment.successProductsListFromFireStore(productsList)
                     is CartFragment ->
                         fragment.successProductsListFromFireStore(productsList)
+
+                }
+
+            }
+    }
+
+    fun getProductsListToActivity(activity: Activity) {
+        mFireStore.collection(Constants.PRODUCTS)
+            .get()
+            .addOnSuccessListener { document ->
+                Log.e("Products List", document.documents.toString())
+                val productsList: ArrayList<Product> = ArrayList()
+                for (i in document.documents) {
+
+                    val product = i.toObject(Product::class.java)
+                    product!!.product_id = i.id
+                    productsList.add(product)
+                }
+
+                when (activity) {
+                    is ProductDetailsActivity ->
+                        activity.successRelatedProductsListFromFireStore(productsList)
 
                 }
 
