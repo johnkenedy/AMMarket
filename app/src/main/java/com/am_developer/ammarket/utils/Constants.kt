@@ -18,6 +18,8 @@ object Constants {
     const val IMAGE: String = "image"
     const val USER_PROFILE_IMAGE: String = "User_profile_Image"
 
+    const val EXTRA_PRODUCT_ID: String = "extra_product_id"
+
     const val READ_STORAGE_PERMISSION_CODE = 2
     const val PICK_IMAGE_REQUEST_CODE = 1
 

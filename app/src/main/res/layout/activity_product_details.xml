@@ -9,9 +9,11 @@
         tools:context=".ui.activities.ProductDetailsActivity">
 
         <Toolbar
-            android:id="@+id/tb_main"
+            android:id="@+id/tb_product_details"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
+            android:title=""
+            android:titleTextColor="@color/white"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -23,10 +25,10 @@
             android:text="@string/details"
             android:textColor="@color/pink"
             android:textSize="18sp"
-            app:layout_constraintBottom_toBottomOf="@id/tb_main"
+            app:layout_constraintBottom_toBottomOf="@id/tb_product_details"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/tb_main"
-            app:layout_constraintTop_toTopOf="@+id/tb_main" />
+            app:layout_constraintStart_toStartOf="@+id/tb_product_details"
+            app:layout_constraintTop_toTopOf="@+id/tb_product_details" />
 
         <Button
             android:id="@+id/btn_product_details_add_to_cart"
@@ -45,15 +47,16 @@
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            app:layout_constraintBottom_toTopOf="@id/btn_product_details_add_to_cart"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/btn_product_details_add_to_cart"
             app:layout_constraintTop_toTopOf="parent">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="?attr/actionBarSize"
+                android:paddingBottom="30dp"
                 app:layout_constraintTop_toTopOf="parent">
 
                 <androidx.cardview.widget.CardView
@@ -83,7 +86,7 @@
                             app:tint="@color/pink" />
 
                         <ImageView
-                            android:id="@+id/iv_home_product_image"
+                            android:id="@+id/iv_product_details_image"
                             android:layout_width="match_parent"
                             android:layout_height="0dp"
                             android:layout_marginStart="30dp"
@@ -97,7 +100,7 @@
                             tools:src="@drawable/nescau_light" />
 
                         <TextView
-                            android:id="@+id/tv_home_product_title"
+                            android:id="@+id/tv_product_details_title"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_margin="15dp"
@@ -107,11 +110,11 @@
                             android:textSize="18sp"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/iv_home_product_image"
+                            app:layout_constraintTop_toBottomOf="@+id/iv_product_details_image"
                             tools:text="NESCAU LIGHT" />
 
                         <TextView
-                            android:id="@+id/tv_home_product_price"
+                            android:id="@+id/tv_product_details_price"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="20dp"
@@ -120,8 +123,8 @@
                             android:textSize="16sp"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="@+id/tv_home_product_title"
-                            app:layout_constraintTop_toBottomOf="@+id/tv_home_product_title"
+                            app:layout_constraintStart_toStartOf="@+id/tv_product_details_title"
+                            app:layout_constraintTop_toBottomOf="@+id/tv_product_details_title"
                             tools:text="$9.99" />
 
                     </androidx.constraintlayout.widget.ConstraintLayout>
@@ -155,7 +158,7 @@
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rv_related_item"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="225dp"
                     android:layout_margin="15dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"

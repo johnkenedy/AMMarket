@@ -24,7 +24,6 @@ class GlideLoader (val context: Context) {
         try {
             Glide.with(context)
                 .load(image)
-                .centerCrop()
                 .into(imageView)
         } catch (e: IOException) {
             e.printStackTrace()

@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.am_developer.ammarket.R
 import com.am_developer.ammarket.models.Product
 import com.am_developer.ammarket.ui.activities.ProductDetailsActivity
+import com.am_developer.ammarket.utils.Constants
 import com.am_developer.ammarket.utils.GlideLoader
 
 open class TrendingProductsListAdapter(
@@ -38,7 +39,9 @@ open class TrendingProductsListAdapter(
             holder.itemView.findViewById<TextView>(R.id.tv_home_product_price).text =
                 "$${model.price}"
             holder.itemView.setOnClickListener {
-                context.startActivity(Intent(context, ProductDetailsActivity::class.java))
+                val intent = Intent(context, ProductDetailsActivity::class.java)
+                intent.putExtra(Constants.EXTRA_PRODUCT_ID, model.product_id)
+                context.startActivity(intent)
             }
         }
     }
