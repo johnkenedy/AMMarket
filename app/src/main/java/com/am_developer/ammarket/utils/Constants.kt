@@ -9,6 +9,8 @@ import androidx.fragment.app.Fragment
 object Constants {
     const val USERS: String = "users"
     const val PRODUCTS: String = "products"
+    const val CATEGORY: String = "category"
+    const val LIST: String = "list"
 
     const val AM_PREFERENCES: String = "AMPrefs"
     const val LOGGED_IN_USERNAME: String = "logged_in_username"
@@ -19,9 +21,14 @@ object Constants {
     const val USER_PROFILE_IMAGE: String = "User_profile_Image"
 
     const val EXTRA_PRODUCT_ID: String = "extra_product_id"
+    const val EXTRA_PRODUCT_CATEGORY: String = "extra_product_category"
 
     const val READ_STORAGE_PERMISSION_CODE = 2
     const val PICK_IMAGE_REQUEST_CODE = 1
+
+    const val DEFAULT_CART_QUANTITY: String = "1"
+    const val CART_ITEMS: String = "cart_items"
+    const val PRODUCT_ID: String = "product_id"
 
 
     fun showImageChooser(fragment: Fragment) {

@@ -1,18 +1,21 @@
 package com.am_developer.ammarket.ui.activities
 
-import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.am_developer.ammarket.R
 import com.am_developer.ammarket.databinding.ActivityProductDetailsBinding
 import com.am_developer.ammarket.firestore.FirestoreClass
+import com.am_developer.ammarket.models.CartItem
 import com.am_developer.ammarket.models.Product
 import com.am_developer.ammarket.ui.adapter.RelatedItemListAdapter
 import com.am_developer.ammarket.utils.Constants
 import com.am_developer.ammarket.utils.GlideLoader
 
-class ProductDetailsActivity : BaseActivity() {
+class ProductDetailsActivity : BaseActivity(), View.OnClickListener {
 
     private lateinit var binding: ActivityProductDetailsBinding
+    private lateinit var mProductDetails: Product
     private var mProductId: String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -25,6 +28,9 @@ class ProductDetailsActivity : BaseActivity() {
 
         getProductDetails()
 
+        binding.btnProductDetailsAddToCart.setOnClickListener(this)
+        binding.btnProductDetailsGoToCart.setOnClickListener(this)
+
         setContentView(binding.root)
     }
 
@@ -34,7 +40,14 @@ class ProductDetailsActivity : BaseActivity() {
         hideProgressDialog()
     }
 
+    fun productExistsInCart() {
+        hideProgressDialog()
+        binding.btnProductDetailsAddToCart.visibility = View.INVISIBLE
+        binding.btnProductDetailsGoToCart.visibility = View.VISIBLE
+    }
+
     fun productDetailsSuccess(product: Product) {
+        mProductDetails = product
         GlideLoader(this@ProductDetailsActivity).loadProductPicture(
             product.image,
             binding.ivProductDetailsImage
@@ -43,6 +56,8 @@ class ProductDetailsActivity : BaseActivity() {
         binding.tvProductDetailsTitle.text = product.title
         binding.tvProductDetailsPrice.text = "$${product.price}"
 //        binding.tvProductDetailsItemDescription.text = product.description
+
+        FirestoreClass().checkIfItemExistInCart(this, mProductId)
     }
 
     fun successRelatedProductsListFromFireStore(productList: ArrayList<Product>) {
@@ -64,8 +79,40 @@ class ProductDetailsActivity : BaseActivity() {
         getRelatedProductListFromFireStore()
     }
 
-    override fun onBackPressed() {
-        super.onBackPressed()
-        startActivity(Intent(this, MainActivity::class.java))
+
+    private fun addToCart() {
+        val cartItem = CartItem(
+            FirestoreClass().getCurrentUserID(),
+            mProductId,
+            mProductDetails.title,
+            mProductDetails.price,
+            mProductDetails.image,
+            Constants.DEFAULT_CART_QUANTITY
+        )
+        showProgressDialog()
+        FirestoreClass().addCartItems(this, cartItem)
     }
+
+    fun addToCartSuccess() {
+        hideProgressDialog()
+        showErrorSnackBar("Product was added to your cart.", false)
+
+        binding.btnProductDetailsAddToCart.visibility = View.INVISIBLE
+        binding.btnProductDetailsGoToCart.visibility = View.VISIBLE
+    }
+
+    override fun onClick(v: View?) {
+        if (v != null) {
+            when (v.id) {
+                R.id.btn_product_details_add_to_cart -> {
+                    addToCart()
+                }
+            }
+        }
+    }
+
+//    override fun onBackPressed() {
+//        super.onBackPressed()
+//        startActivity(Intent(this, MainActivity::class.java))
+//    }
 }

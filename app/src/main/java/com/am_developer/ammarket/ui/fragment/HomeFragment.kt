@@ -36,7 +36,7 @@ class HomeFragment : BaseFragment() {
         binding.rvHomeProducts.adapter = adapterProducts
 
         binding.rvHomeCategories.layoutManager = GridLayoutManager(requireActivity(), 5)
-        val adapterCategory = HomeCategoriesListAdapter()
+        val adapterCategory = HomeCategoriesListAdapter(requireActivity())
         binding.rvHomeCategories.adapter = adapterCategory
 
     }

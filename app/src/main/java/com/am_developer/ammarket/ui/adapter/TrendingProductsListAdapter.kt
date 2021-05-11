@@ -38,6 +38,10 @@ open class TrendingProductsListAdapter(
                 model.title
             holder.itemView.findViewById<TextView>(R.id.tv_home_product_price).text =
                 "$${model.price}"
+
+//            holder.itemView.findViewById<ImageView>(R.id.add_item_to_cart).setOnClickListener {
+//            }
+
             holder.itemView.setOnClickListener {
                 val intent = Intent(context, ProductDetailsActivity::class.java)
                 intent.putExtra(Constants.EXTRA_PRODUCT_ID, model.product_id)
