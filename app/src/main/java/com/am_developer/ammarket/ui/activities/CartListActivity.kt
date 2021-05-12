@@ -7,11 +7,14 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.am_developer.ammarket.databinding.ActivityCartBinding
 import com.am_developer.ammarket.firestore.FirestoreClass
 import com.am_developer.ammarket.models.CartItem
+import com.am_developer.ammarket.models.Product
 import com.am_developer.ammarket.ui.adapter.CartItemsListAdapter
 
 class CartListActivity : BaseActivity() {
 
     private lateinit var binding: ActivityCartBinding
+    private lateinit var mProductsList: ArrayList<Product>
+    private lateinit var mCartListItems: ArrayList<CartItem>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -23,7 +26,21 @@ class CartListActivity : BaseActivity() {
     fun successCartItemList(cartList: ArrayList<CartItem>) {
         hideProgressDialog()
 
-        if (cartList.size > 0) {
+        for (product in mProductsList) {
+            for (cartItem in cartList) {
+                if (product.product_id == cartItem.product_id) {
+                    cartItem.stock_quantity = product.quantity
+
+                    if (product.quantity.toInt() == 0) {
+                        cartItem.cart_quantity = product.quantity
+                    }
+                }
+            }
+        }
+
+        mCartListItems = cartList
+
+        if (mCartListItems.size > 0) {
             binding.rvCartItemsList.visibility = View.VISIBLE
             binding.llCheckout.visibility = View.VISIBLE
             binding.btnCheckout.visibility = View.VISIBLE
@@ -35,12 +52,14 @@ class CartListActivity : BaseActivity() {
             binding.rvCartItemsList.adapter = cartListAdapter
 
             var subTotal: Double = 0.0
-            for (item in cartList) {
-                val price = item.price.toDouble()
-                val quantity = item.cart_quantity.toInt()
-                subTotal += (price * quantity)
+            for (item in mCartListItems) {
+                val availableQuantity = item.stock_quantity.toInt()
+                if (availableQuantity > 0) {
+                    val price = item.price.toDouble()
+                    val quantity = item.cart_quantity.toInt()
+                    subTotal += (price * quantity)
+                }
             }
-
             val roundedSubTotal = "%.2f".format(subTotal).toDouble()
             binding.tvSubTotal.text = "$$roundedSubTotal"
             binding.tvShippingCharge.text = "$10.0" //TODO - Change shipping charge Logic
@@ -61,13 +80,34 @@ class CartListActivity : BaseActivity() {
         }
     }
 
+    fun successProductsListFromFireStore(productsList: ArrayList<Product>) {
+        mProductsList = productsList
+        getCartItemsList()
+        hideProgressDialog()
+    }
+
+    private fun getProductList() {
+        showProgressDialog()
+        FirestoreClass().getAllProductsList(this@CartListActivity)
+    }
+
+    fun itemUpdateSuccess() {
+//        hideProgressDialog()
+        getCartItemsList()
+    }
+
     override fun onResume() {
         super.onResume()
+        getProductList()
+    }
+
+    fun itemRemovedSuccess() {
+        hideProgressDialog()
+        showErrorSnackBar("Item removed successfully.", false)
         getCartItemsList()
     }
 
     private fun getCartItemsList() {
-        showProgressDialog()
         FirestoreClass().getCartList(this@CartListActivity)
     }
 

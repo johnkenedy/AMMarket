@@ -1,5 +1,6 @@
 package com.am_developer.ammarket.ui.activities
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
@@ -47,6 +48,7 @@ class ProductDetailsActivity : BaseActivity(), View.OnClickListener {
         binding.btnProductDetailsGoToCart.visibility = View.VISIBLE
     }
 
+    @SuppressLint("SetTextI18n")
     fun productDetailsSuccess(product: Product) {
         mProductDetails = product
         GlideLoader(this@ProductDetailsActivity).loadProductPicture(
@@ -58,7 +60,14 @@ class ProductDetailsActivity : BaseActivity(), View.OnClickListener {
         binding.tvProductDetailsPrice.text = "$${product.price}"
 //        binding.tvProductDetailsItemDescription.text = product.description
 
-        FirestoreClass().checkIfItemExistInCart(this, mProductId)
+        if (product.quantity.toInt() == 0) {
+            hideProgressDialog()
+            binding.btnProductDetailsAddToCart.visibility = View.GONE
+            binding.tvProductDetailsPrice.text =
+                resources.getString(R.string.lbl_out_of_stock)
+        } else {
+            FirestoreClass().checkIfItemExistInCart(this, mProductId)
+        }
     }
 
     fun successRelatedProductsListFromFireStore(productList: ArrayList<Product>) {

@@ -71,5 +71,7 @@
     <string name="action_cart">My Cart</string>
     <string name="get_discount">get discount on purchases over $200</string>
 
+    <string name="lbl_out_of_stock">OUT OF STOCK</string>
+    <string name="msg_for_available_stock">Available stock is %1$s!. You can not add more than stock quantity.</string>
 
 </resources>
