@@ -62,4 +62,14 @@
     <string name="add_to_cart">Add to Cart</string>
     <string name="go_to_cart">Go to Cart</string>
 
+    <string name="title_my_cart">My Cart</string>
+    <string name="no_cart_item_found">No item found in cart!</string>
+    <string name="lbl_subtotal">Subtotal</string>
+    <string name="lbl_shipping_charge">Shipping Charge</string>
+    <string name="lbl_total_amount">Total Amount</string>
+    <string name="btn_lbl_checkout">CHECKOUT</string>
+    <string name="action_cart">My Cart</string>
+    <string name="get_discount">get discount on purchases over $200</string>
+
+
 </resources>

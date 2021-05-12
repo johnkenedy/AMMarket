@@ -12,8 +12,8 @@ class MainActivity : BaseActivity() {
 
     private lateinit var binding: ActivityMainBinding
 
-    private lateinit var chipNavigationBar: ChipNavigationBar
-    private lateinit var verticalChipNavigationBar: ChipNavigationBar
+    lateinit var chipNavigationBar: ChipNavigationBar
+    lateinit var verticalChipNavigationBar: ChipNavigationBar
 
     private var upDownMenu = 1
 
@@ -74,7 +74,7 @@ class MainActivity : BaseActivity() {
             override fun onItemSelected(id: Int) {
                 val fragment = when (id) {
                     R.id.navigation_search -> SearchFragment()
-                    R.id.navigation_cart -> ShoppingFragment()
+                    R.id.navigation_cart -> ClientCartFragment()
                     R.id.navigation_coupon -> CouponFragment()
                     R.id.navigation_list -> ShoppingListFragment()
                     R.id.navigation_address -> AddressFragment()

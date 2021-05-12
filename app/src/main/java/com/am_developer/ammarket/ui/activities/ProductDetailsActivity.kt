@@ -1,5 +1,6 @@
 package com.am_developer.ammarket.ui.activities
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -106,6 +107,10 @@ class ProductDetailsActivity : BaseActivity(), View.OnClickListener {
             when (v.id) {
                 R.id.btn_product_details_add_to_cart -> {
                     addToCart()
+                }
+                R.id.btn_product_details_go_to_cart -> {
+                    val intent = Intent(this@ProductDetailsActivity, CartActivity::class.java)
+                    startActivity(intent)
                 }
             }
         }

@@ -15,6 +15,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AMMarket"
         tools:ignore="LockedOrientationActivity">
+        <activity android:name=".ui.activities.CartActivity"></activity>
         <activity
             android:name=".ui.activities.BaseActivity"
             android:screenOrientation="portrait" />
@@ -27,23 +28,20 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".ui.activities.MainActivity"
             android:label="@string/title_activity_main"
             android:screenOrientation="portrait" />
-
         <activity
             android:name=".ui.activities.LoginActivity"
             android:screenOrientation="portrait" />
-
-        <activity android:name=".ui.activities.ProductDetailsActivity"
+        <activity
+            android:name=".ui.activities.ProductDetailsActivity"
             android:screenOrientation="portrait" />
 
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
-
     </application>
 
 </manifest>
