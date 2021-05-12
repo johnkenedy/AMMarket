@@ -6,7 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.am_developer.ammarket.databinding.FragmentClientCartBinding
-import com.am_developer.ammarket.ui.activities.CartActivity
+import com.am_developer.ammarket.ui.activities.CartListActivity
 
 class ClientCartFragment : BaseFragment() {
 
@@ -18,7 +18,7 @@ class ClientCartFragment : BaseFragment() {
     ): View {
         // Inflate the layout for this fragment
         binding = FragmentClientCartBinding.inflate(inflater, container, false)
-        startActivity(Intent(requireActivity(), CartActivity::class.java))
+        startActivity(Intent(requireActivity(), CartListActivity::class.java))
         return binding.root
     }
 

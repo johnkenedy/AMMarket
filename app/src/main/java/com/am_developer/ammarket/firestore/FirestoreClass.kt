@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment
 import com.am_developer.ammarket.models.CartItem
 import com.am_developer.ammarket.models.Product
 import com.am_developer.ammarket.models.User
+import com.am_developer.ammarket.ui.activities.CartListActivity
 import com.am_developer.ammarket.ui.activities.ProductDetailsActivity
 import com.am_developer.ammarket.ui.fragment.*
 import com.am_developer.ammarket.utils.Constants
@@ -260,9 +261,40 @@ class FirestoreClass {
             }
             .addOnFailureListener { e ->
                 activity.hideProgressDialog()
-                Log.e(activity.javaClass.simpleName,
-                "Error while checking the existing cart list.",
-                e)
+                Log.e(
+                    activity.javaClass.simpleName,
+                    "Error while checking the existing cart list.",
+                    e
+                )
+            }
+    }
+
+    fun getCartList(activity: Activity) {
+        mFireStore.collection(Constants.CART_ITEMS)
+            .whereEqualTo(Constants.USER_ID, getCurrentUserID())
+            .get()
+            .addOnSuccessListener { document ->
+                val list: ArrayList<CartItem> = ArrayList()
+
+                for (i in document.documents) {
+                    val cartItem = i.toObject(CartItem::class.java)!!
+                    cartItem.id = i.id
+
+                    list.add(cartItem)
+                }
+
+                when (activity) {
+                    is CartListActivity ->
+                        activity.successCartItemList(list)
+                }
+            }
+            .addOnFailureListener { e ->
+                when (activity) {
+                    is CartListActivity -> {
+                        activity.hideProgressDialog()
+                    }
+                }
+                Log.e(activity.javaClass.simpleName, "Error while getting the cart list items.", e)
             }
     }
 

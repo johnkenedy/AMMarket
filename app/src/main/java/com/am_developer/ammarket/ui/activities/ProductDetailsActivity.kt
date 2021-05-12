@@ -109,7 +109,7 @@ class ProductDetailsActivity : BaseActivity(), View.OnClickListener {
                     addToCart()
                 }
                 R.id.btn_product_details_go_to_cart -> {
-                    val intent = Intent(this@ProductDetailsActivity, CartActivity::class.java)
+                    val intent = Intent(this@ProductDetailsActivity, CartListActivity::class.java)
                     startActivity(intent)
                 }
             }

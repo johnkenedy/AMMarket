@@ -15,7 +15,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AMMarket"
         tools:ignore="LockedOrientationActivity">
-        <activity android:name=".ui.activities.CartActivity"></activity>
+        <activity android:name=".ui.activities.CartListActivity"></activity>
         <activity
             android:name=".ui.activities.BaseActivity"
             android:screenOrientation="portrait" />

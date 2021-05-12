@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 
 object Constants {
     const val USERS: String = "users"
+    const val USER_ID: String = "user_id"
     const val PRODUCTS: String = "products"
     const val CATEGORY: String = "category"
     const val LIST: String = "list"
