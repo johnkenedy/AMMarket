@@ -1,6 +1,7 @@
 package com.am_developer.ammarket.ui.activities
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -111,4 +112,8 @@ class CartListActivity : BaseActivity() {
         FirestoreClass().getCartList(this@CartListActivity)
     }
 
+    override fun onBackPressed() {
+        super.onBackPressed()
+        startActivity(Intent(this, MainActivity::class.java))
+    }
 }
