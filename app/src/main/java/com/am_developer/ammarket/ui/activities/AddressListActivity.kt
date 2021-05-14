@@ -2,10 +2,11 @@ package com.am_developer.ammarket.ui.activities
 
 import android.content.Intent
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
 import com.am_developer.ammarket.databinding.ActivityAddressListBinding
+import com.am_developer.ammarket.firestore.FirestoreClass
+import com.am_developer.ammarket.models.Address
 
-class AddressListActivity : AppCompatActivity() {
+class AddressListActivity : BaseActivity() {
 
     private lateinit var binding: ActivityAddressListBinding
 
@@ -17,6 +18,17 @@ class AddressListActivity : AppCompatActivity() {
         binding.btnAddAddress.setOnClickListener {
             startActivity(Intent(this, AddEditAddAddressActivity::class.java))
         }
+
+        getAddressList()
+    }
+
+    private fun getAddressList() {
+        showProgressDialog()
+        FirestoreClass().getAddressesList(this)
+    }
+
+    fun successAddressListFromFireStore(addressList: ArrayList<Address>) {
+        hideProgressDialog()
 
     }
 

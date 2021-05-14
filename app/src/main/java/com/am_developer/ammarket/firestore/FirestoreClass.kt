@@ -7,9 +7,12 @@ import android.content.SharedPreferences
 import android.net.Uri
 import android.util.Log
 import androidx.fragment.app.Fragment
+import com.am_developer.ammarket.models.Address
 import com.am_developer.ammarket.models.CartItem
 import com.am_developer.ammarket.models.Product
 import com.am_developer.ammarket.models.User
+import com.am_developer.ammarket.ui.activities.AddEditAddAddressActivity
+import com.am_developer.ammarket.ui.activities.AddressListActivity
 import com.am_developer.ammarket.ui.activities.CartListActivity
 import com.am_developer.ammarket.ui.activities.ProductDetailsActivity
 import com.am_developer.ammarket.ui.fragment.*
@@ -254,11 +257,11 @@ class FirestoreClass {
             .update(itemHashMap)
             .addOnSuccessListener {
 
-            when (context) {
-                is CartListActivity -> {
-                    context.itemUpdateSuccess()
+                when (context) {
+                    is CartListActivity -> {
+                        context.itemUpdateSuccess()
+                    }
                 }
-            }
 
             }.addOnFailureListener { e ->
                 when (context) {
@@ -360,6 +363,38 @@ class FirestoreClass {
             }.addOnFailureListener { e ->
                 activity.hideProgressDialog()
                 Log.e(activity.javaClass.simpleName, "Error while getting all products items.", e)
+            }
+    }
+
+    fun getAddressesList(activity: AddressListActivity) {
+        mFireStore.collection(Constants.ADDRESSES)
+            .whereEqualTo(Constants.USER_ID, getCurrentUserID())
+            .get()
+            .addOnSuccessListener { document ->
+                val addressList: ArrayList<Address> = ArrayList()
+                for (i in document.documents) {
+                    val address = i.toObject(Address::class.java)!!
+                    address.id = i.id
+                    addressList.add(address)
+                }
+                activity.successAddressListFromFireStore(addressList)
+            }.addOnFailureListener { e ->
+                activity.hideProgressDialog()
+                Log.e(activity.javaClass.simpleName, "Error while getting the address list.", e)
+            }
+    }
+
+    fun addAddress(activity: AddEditAddAddressActivity, addressInfo: Address) {
+        mFireStore.collection(Constants.ADDRESSES)
+            .document()
+            .set(addressInfo, SetOptions.merge())
+            .addOnSuccessListener {
+
+                activity.addUpdateAddressSuccess()
+
+            }.addOnFailureListener { e ->
+                activity.hideProgressDialog()
+                Log.e(activity.javaClass.simpleName, "Error while adding the address.", e)
             }
     }
 

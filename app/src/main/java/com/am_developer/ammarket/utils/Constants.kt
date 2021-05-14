@@ -11,6 +11,7 @@ object Constants {
     const val USER_ID: String = "user_id"
     const val PRODUCTS: String = "products"
     const val CATEGORY: String = "category"
+    const val ADDRESSES: String = "addresses"
     const val LIST: String = "list"
 
     const val AM_PREFERENCES: String = "AMPrefs"
@@ -31,6 +32,11 @@ object Constants {
     const val CART_ITEMS: String = "cart_items"
     const val PRODUCT_ID: String = "product_id"
     const val CART_QUANTITY: String = "cart_quantity"
+
+    const val HOME: String = "Home"
+    const val OFFICE: String = "Office"
+    const val OTHER: String = "Other"
+
 
 
     fun showImageChooser(fragment: Fragment) {
