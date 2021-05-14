@@ -13,6 +13,11 @@ class AddressListActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityAddressListBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        binding.btnAddAddress.setOnClickListener {
+            startActivity(Intent(this, AddEditAddAddressActivity::class.java))
+        }
+
     }
 
     override fun onBackPressed() {
