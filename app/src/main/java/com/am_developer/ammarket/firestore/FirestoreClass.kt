@@ -398,6 +398,19 @@ class FirestoreClass {
             }
     }
 
+    fun deleteAddress(activity: AddressListActivity, addressId: String) {
+        mFireStore.collection(Constants.ADDRESSES)
+            .document(addressId)
+            .delete()
+            .addOnSuccessListener {
+                activity.deleteAddressSuccess()
+            }
+            .addOnFailureListener { e ->
+                activity.hideProgressDialog()
+                Log.e(activity.javaClass.simpleName, "Error while deleting the Address.", e)
+            }
+    }
+
     fun updateAddress(
         activity: AddEditAddAddressActivity,
         addressInfo: Address,
@@ -411,7 +424,7 @@ class FirestoreClass {
             }
             .addOnFailureListener { e ->
                 activity.hideProgressDialog()
-                Log.e(activity.javaClass.simpleName, "Error while updating the Address.")
+                Log.e(activity.javaClass.simpleName, "Error while updating the Address.", e)
             }
     }
 

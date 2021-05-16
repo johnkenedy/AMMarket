@@ -6,10 +6,12 @@ import android.view.View
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.am_developer.ammarket.R
 import com.am_developer.ammarket.databinding.ActivityAddressListBinding
 import com.am_developer.ammarket.firestore.FirestoreClass
 import com.am_developer.ammarket.models.Address
 import com.am_developer.ammarket.ui.adapter.AddressListAdapter
+import com.am_developer.ammarket.utils.SwipeToDeleteCallback
 import com.am_developer.ammarket.utils.SwipeToEditCallback
 
 class AddressListActivity : BaseActivity() {
@@ -52,10 +54,32 @@ class AddressListActivity : BaseActivity() {
             val editItemTouchHelper = ItemTouchHelper(editSwipeHandler)
             editItemTouchHelper.attachToRecyclerView(binding.rvAddressList)
 
+            val deleteSwipeHandler = object : SwipeToDeleteCallback(this) {
+                override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+                    showProgressDialog()
+                    FirestoreClass().deleteAddress(
+                        this@AddressListActivity,
+                        addressList[viewHolder.adapterPosition].id
+                    )
+                }
+            }
+
+            val deleteItemTouchHelper = ItemTouchHelper(deleteSwipeHandler)
+            deleteItemTouchHelper.attachToRecyclerView(binding.rvAddressList)
+
         } else {
             binding.rvAddressList.visibility = View.GONE
             binding.tvNoAddressFound.visibility = View.VISIBLE
         }
+    }
+
+    fun deleteAddressSuccess() {
+        hideProgressDialog()
+        showErrorSnackBar(
+            resources.getString(R.string.err_your_address_deleted_successfully),
+            false
+        )
+        getAddressList()
     }
 
     override fun onResume() {
