@@ -16,7 +16,8 @@ import com.am_developer.ammarket.utils.Constants
 
 open class AddressListAdapter(
     private val context: Context,
-    private val list: ArrayList<Address>
+    private val list: ArrayList<Address>,
+    private val selectAddress: Boolean
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
@@ -30,7 +31,7 @@ open class AddressListAdapter(
     fun notifyEditItem(activity: Activity, position: Int) {
         val intent = Intent(context, AddEditAddAddressActivity::class.java)
         intent.putExtra(Constants.EXTRA_ADDRESS_DETAILS, list[position])
-        activity.startActivity(intent)
+        activity.startActivityForResult(intent, Constants.ADD_ADDRESS_REQUEST_CODE)
         notifyItemChanged(position)
 
     }
@@ -45,6 +46,10 @@ open class AddressListAdapter(
                 "${model.address}, ${model.zipCode}"
             holder.itemView.findViewById<TextView>(R.id.tv_address_phone_number).text =
                 model.mobileNumber
+
+            if (selectAddress) {
+                holder.itemView.setOnClickListener {  }
+            }
         }
     }
 

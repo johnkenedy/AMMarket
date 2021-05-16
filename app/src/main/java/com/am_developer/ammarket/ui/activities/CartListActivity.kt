@@ -10,6 +10,7 @@ import com.am_developer.ammarket.firestore.FirestoreClass
 import com.am_developer.ammarket.models.CartItem
 import com.am_developer.ammarket.models.Product
 import com.am_developer.ammarket.ui.adapter.CartItemsListAdapter
+import com.am_developer.ammarket.utils.Constants
 
 class CartListActivity : BaseActivity() {
 
@@ -21,6 +22,13 @@ class CartListActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityCartBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        binding.btnCheckout.setOnClickListener {
+            val intent = Intent(this@CartListActivity, AddressListActivity::class.java)
+            intent.putExtra(Constants.EXTRA_SELECT_ADDRESS, true)
+            startActivity(intent)
+        }
+
     }
 
     @SuppressLint("SetTextI18n")
