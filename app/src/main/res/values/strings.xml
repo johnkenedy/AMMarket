@@ -89,11 +89,18 @@
     <string name="lbl_other">OTHER</string>
     <string name="hint_other_details">Other details</string>
     <string name="submit">SUBMIT</string>
+
     <string name="err_msg_please_enter_full_name">Please enter full name.</string>
     <string name="err_msg_please_enter_phone_number">Please enter phone number.</string>
     <string name="err_msg_please_enter_address">Please enter address.</string>
     <string name="err_msg_please_enter_zip_code">Please enter zip-code.</string>
     <string name="err_msg_please_enter_other_details">Please enter other details.</string>
     <string name="err_your_address_added_successfully">Your address was added successfully.</string>
+
+    <string name="title_edit_address">Edit Address</string>
+    <string name="btn_lbl_update">UPDATE</string>
+    <string name="msg_your_address_updated_successfully">You address was updated successfully.</string>
+
+    <string name="err_your_address_deleted_successfully">Your address was deleted successfully.</string>
 
 </resources>

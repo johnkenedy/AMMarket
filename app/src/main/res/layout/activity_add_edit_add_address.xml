@@ -33,7 +33,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:paddingBottom="60dp"
+        android:layout_marginBottom="50dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/toolbar_add_edit_address_activity">
@@ -41,7 +41,6 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
             android:layout_marginBottom="10dp"
             android:orientation="vertical">
 
@@ -64,9 +63,9 @@
                     android:id="@+id/et_full_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/pink"
                     android:drawableStart="@drawable/ic_baseline_person_outline_24"
-                    android:drawablePadding="5dp" />
+                    android:drawablePadding="5dp"
+                    android:textColor="@color/pink" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -86,10 +85,10 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/et_phone_number"
                     android:layout_width="match_parent"
-                    android:textColor="@color/pink"
                     android:layout_height="wrap_content"
                     android:drawableStart="@drawable/ic_baseline_local_phone_24"
-                    android:drawablePadding="5dp" />
+                    android:drawablePadding="5dp"
+                    android:textColor="@color/pink" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -108,12 +107,12 @@
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/et_address"
-                    android:textColor="@color/pink"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:drawableStart="@drawable/ic_baseline_location_on_24"
                     android:drawablePadding="5dp"
-                    android:minLines="3" />
+                    android:minLines="3"
+                    android:textColor="@color/pink" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -134,9 +133,9 @@
                     android:id="@+id/et_zip_code"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/pink"
                     android:drawableStart="@drawable/ic_baseline_note_24"
-                    android:drawablePadding="5dp" />
+                    android:drawablePadding="5dp"
+                    android:textColor="@color/pink" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -157,9 +156,9 @@
                     android:id="@+id/et_additional_note"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/pink"
                     android:drawableStart="@drawable/ic_baseline_note_add_24"
-                    android:drawablePadding="5dp" />
+                    android:drawablePadding="5dp"
+                    android:textColor="@color/pink" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <RadioGroup
@@ -232,10 +231,12 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/et_other_details"
                     android:layout_width="match_parent"
-                    android:textColor="@color/pink"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
                     android:drawableStart="@drawable/ic_other_details"
-                    android:drawablePadding="5dp" />
+                    android:drawablePadding="5dp"
+                    android:textColor="@color/pink" />
+
             </com.google.android.material.textfield.TextInputLayout>
 
 

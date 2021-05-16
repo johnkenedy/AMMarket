@@ -37,7 +37,7 @@ object Constants {
     const val OFFICE: String = "Office"
     const val OTHER: String = "Other"
 
-
+    const val EXTRA_ADDRESS_DETAILS: String = "AddressDetails"
 
     fun showImageChooser(fragment: Fragment) {
         val galleryIntent = Intent(Intent.ACTION_PICK,

@@ -12,11 +12,45 @@ import com.am_developer.ammarket.utils.Constants
 class AddEditAddAddressActivity : BaseActivity() {
 
     private lateinit var binding: ActivityAddEditAddAddressBinding
+    private var mAddressDetails: Address? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityAddEditAddAddressBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        if (intent.hasExtra(Constants.EXTRA_ADDRESS_DETAILS)) {
+            mAddressDetails = intent.getParcelableExtra(Constants.EXTRA_ADDRESS_DETAILS)
+        }
+
+        if (mAddressDetails != null) {
+            if (mAddressDetails!!.id.isNotEmpty()) {
+                binding.tvAddEditAddressTitle.text =
+                    resources.getString(R.string.title_edit_address)
+                binding.btnSubmitAddress.text = resources.getString(R.string.btn_lbl_update)
+
+                binding.etFullName.setText(mAddressDetails?.name)
+                binding.etPhoneNumber.setText(mAddressDetails?.mobileNumber)
+                binding.etAddress.setText(mAddressDetails?.address)
+                binding.etZipCode.setText(mAddressDetails?.zipCode)
+                binding.etAdditionalNote.setText(mAddressDetails?.additionalNote)
+
+                when (mAddressDetails?.type) {
+                    Constants.HOME -> {
+                        binding.rbHome.isChecked = true
+                    }
+                    Constants.OFFICE -> {
+                        binding.rbOffice.isChecked = true
+                    }
+                    else -> {
+                        binding.rbOther.isChecked = true
+                        binding.tilOtherDetails.visibility = View.VISIBLE
+                        binding.etOtherDetails.setText(mAddressDetails?.otherDetails)
+                    }
+                }
+
+            }
+        }
 
         binding.btnSubmitAddress.setOnClickListener { saveAddressToFireStore() }
         binding.rgType.setOnCheckedChangeListener { _, checkedId ->
@@ -63,14 +97,24 @@ class AddEditAddAddressActivity : BaseActivity() {
                 otherDetails
             )
 
-            FirestoreClass().addAddress(this, addressModel)
-
+            if (mAddressDetails != null && mAddressDetails!!.id.isNotEmpty()) {
+                FirestoreClass().updateAddress(this, addressModel, mAddressDetails!!.id)
+            } else {
+                FirestoreClass().addAddress(this, addressModel)
+            }
         }
     }
 
     fun addUpdateAddressSuccess() {
         hideProgressDialog()
-        showErrorSnackBar(resources.getString(R.string.err_your_address_added_successfully), true)
+
+        val notifySuccessMessage: String = if (mAddressDetails != null && mAddressDetails!!.id.isNotEmpty()) {
+            resources.getString(R.string.msg_your_address_updated_successfully)
+        } else {
+            resources.getString(R.string.err_your_address_added_successfully)
+        }
+
+        showErrorSnackBar(notifySuccessMessage, false)
         finish()
     }
 
