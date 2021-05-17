@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.am_developer.ammarket.R
 import com.am_developer.ammarket.models.Address
 import com.am_developer.ammarket.ui.activities.AddEditAddAddressActivity
+import com.am_developer.ammarket.ui.activities.CheckoutActivity
 import com.am_developer.ammarket.utils.Constants
 
 open class AddressListAdapter(
@@ -48,7 +49,10 @@ open class AddressListAdapter(
                 model.mobileNumber
 
             if (selectAddress) {
-                holder.itemView.setOnClickListener {  }
+                holder.itemView.setOnClickListener {
+                    val intent = Intent(context, CheckoutActivity::class.java)
+                    context.startActivity(intent)
+                }
             }
         }
     }

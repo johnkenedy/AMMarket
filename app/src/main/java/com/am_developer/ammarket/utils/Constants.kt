@@ -36,6 +36,9 @@ object Constants {
     const val HOME: String = "Home"
     const val OFFICE: String = "Office"
     const val OTHER: String = "Other"
+    const val CASH_ON_DELIVERY: String = "Cash on delivery"
+    const val CARD_MACHINE: String = "Card machine"
+
 
     const val EXTRA_ADDRESS_DETAILS: String = "AddressDetails"
     const val EXTRA_SELECT_ADDRESS: String = "extra_select_address"
