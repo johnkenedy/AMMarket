@@ -11,10 +11,7 @@ import com.am_developer.ammarket.models.Address
 import com.am_developer.ammarket.models.CartItem
 import com.am_developer.ammarket.models.Product
 import com.am_developer.ammarket.models.User
-import com.am_developer.ammarket.ui.activities.AddEditAddAddressActivity
-import com.am_developer.ammarket.ui.activities.AddressListActivity
-import com.am_developer.ammarket.ui.activities.CartListActivity
-import com.am_developer.ammarket.ui.activities.ProductDetailsActivity
+import com.am_developer.ammarket.ui.activities.*
 import com.am_developer.ammarket.ui.fragment.*
 import com.am_developer.ammarket.utils.Constants
 import com.google.firebase.auth.FirebaseAuth
@@ -309,13 +306,21 @@ class FirestoreClass {
                 }
 
                 when (activity) {
-                    is CartListActivity ->
+                    is CartListActivity -> {
                         activity.successCartItemList(list)
+                    }
+                    is CheckoutActivity -> {
+                        activity.successCartItemsList(list)
+                    }
+
                 }
             }
             .addOnFailureListener { e ->
                 when (activity) {
                     is CartListActivity -> {
+                        activity.hideProgressDialog()
+                    }
+                    is CheckoutActivity -> {
                         activity.hideProgressDialog()
                     }
                 }
@@ -347,7 +352,7 @@ class FirestoreClass {
             }
     }
 
-    fun getAllProductsList(activity: CartListActivity) {
+    fun getAllProductsList(activity: Activity) {
         mFireStore.collection(Constants.PRODUCTS)
             .get()
             .addOnSuccessListener { document ->
@@ -357,12 +362,36 @@ class FirestoreClass {
                     product!!.product_id = i.id
                     productsList.add(product)
                 }
+                when (activity) {
+                    is CartListActivity -> {
+                        activity.successProductsListFromFireStore(productsList)
+                    }
+                    is CheckoutActivity -> {
+                        activity.successProductsListFromFireStore(productsList)
+                    }
+                }
 
-                activity.successProductsListFromFireStore(productsList)
 
             }.addOnFailureListener { e ->
-                activity.hideProgressDialog()
-                Log.e(activity.javaClass.simpleName, "Error while getting all products items.", e)
+                when (activity) {
+                    is CartListActivity -> {
+                        activity.hideProgressDialog()
+                        Log.e(
+                            activity.javaClass.simpleName,
+                            "Error while getting all products items.",
+                            e
+                        )
+
+                    }
+                    is CheckoutActivity -> {
+                        activity.hideProgressDialog()
+                        Log.e(
+                            activity.javaClass.simpleName,
+                            "Error while getting all products items.",
+                            e
+                        )
+                    }
+                }
             }
     }
 

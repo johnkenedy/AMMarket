@@ -157,14 +157,14 @@
                         android:maxLines="1"
                         android:textColor="@color/pink"
                         android:textSize="12sp"
-                        app:layout_constraintBottom_toTopOf="@id/tv_address_phone_number"
+                        app:layout_constraintBottom_toTopOf="@id/tv_address_additional_note"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toEndOf="@+id/img_address"
                         app:layout_constraintTop_toBottomOf="@id/tv_address_full_name"
                         tools:text="Rua Prados, 359" />
 
                     <TextView
-                        android:id="@+id/tv_address_phone_number"
+                        android:id="@+id/tv_address_additional_note"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="10dp"
@@ -176,7 +176,7 @@
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toEndOf="@+id/img_address"
                         app:layout_constraintTop_toBottomOf="@id/tv_address_details"
-                        tools:text="(32) 9 99365906" />
+                        tools:text="Additional notes" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
