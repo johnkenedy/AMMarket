@@ -1,5 +1,9 @@
 package com.am_developer.ammarket.models
 
+import android.os.Parcelable
+import kotlinx.android.parcel.Parcelize
+
+@Parcelize
 class User(
     val id: String = "",
     val name: String = "",
@@ -8,4 +12,4 @@ class User(
     val image: String = "",
     val mobile: String = "",
     val profileCompleted: Int = 0
-)
+) : Parcelable

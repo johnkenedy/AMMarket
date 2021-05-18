@@ -38,10 +38,10 @@ class CartListActivity : BaseActivity() {
         for (product in mProductsList) {
             for (cartItem in cartList) {
                 if (product.product_id == cartItem.product_id) {
-                    cartItem.stock_quantity = product.quantity
+                    cartItem.stock_quantity = product.stock_quantity
 
-                    if (product.quantity.toInt() == 0) {
-                        cartItem.cart_quantity = product.quantity
+                    if (product.stock_quantity.toInt() == 0) {
+                        cartItem.cart_quantity = product.stock_quantity
                     }
                 }
             }
@@ -57,7 +57,7 @@ class CartListActivity : BaseActivity() {
 
             binding.rvCartItemsList.layoutManager = LinearLayoutManager(this@CartListActivity)
             binding.rvCartItemsList.setHasFixedSize(true)
-            val cartListAdapter = CartItemsListAdapter(this@CartListActivity, cartList)
+            val cartListAdapter = CartItemsListAdapter(this@CartListActivity, mCartListItems, true)
             binding.rvCartItemsList.adapter = cartListAdapter
 
             var subTotal: Double = 0.0

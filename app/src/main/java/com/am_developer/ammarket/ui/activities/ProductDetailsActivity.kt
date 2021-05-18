@@ -60,7 +60,7 @@ class ProductDetailsActivity : BaseActivity(), View.OnClickListener {
         binding.tvProductDetailsPrice.text = "$${product.price}"
 //        binding.tvProductDetailsItemDescription.text = product.description
 
-        if (product.quantity.toInt() == 0) {
+        if (product.stock_quantity.toInt() == 0) {
             hideProgressDialog()
             binding.btnProductDetailsAddToCart.visibility = View.GONE
             binding.tvProductDetailsPrice.text =
@@ -73,7 +73,7 @@ class ProductDetailsActivity : BaseActivity(), View.OnClickListener {
     fun successRelatedProductsListFromFireStore(productList: ArrayList<Product>) {
         hideProgressDialog()
         binding.rvRelatedItem.layoutManager =
-            LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
+            LinearLayoutManager(this@ProductDetailsActivity)
         binding.rvRelatedItem.setHasFixedSize(true)
         val relatedAdapter = RelatedItemListAdapter(this, productList)
         binding.rvRelatedItem.adapter = relatedAdapter

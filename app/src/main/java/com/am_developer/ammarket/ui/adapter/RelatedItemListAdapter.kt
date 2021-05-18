@@ -40,7 +40,7 @@ class RelatedItemListAdapter (
                 holder.itemView.findViewById<TextView>(R.id.tv_related_product_price).text =
                     "$${model.price}"
                 holder.itemView.findViewById<TextView>(R.id.tv_related_product_quantity).text =
-                    model.quantity
+                    model.stock_quantity
 
                 holder.itemView.setOnClickListener {
                     val intent = Intent(context, ProductDetailsActivity::class.java)

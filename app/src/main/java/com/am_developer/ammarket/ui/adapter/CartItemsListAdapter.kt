@@ -16,7 +16,8 @@ import com.am_developer.ammarket.utils.GlideLoader
 
 open class CartItemsListAdapter(
     private val context: Context,
-    private val list: ArrayList<CartItem>
+    private val list: ArrayList<CartItem>,
+    private val updateCartItems: Boolean
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return MyViewHolder(
@@ -31,42 +32,75 @@ open class CartItemsListAdapter(
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         val model = list[position]
         if (holder is MyViewHolder) {
-            GlideLoader(context).loadProductPicture(model.image, holder.itemView.findViewById(R.id.iv_item_cart_product_image))
-            holder.itemView.findViewById<TextView>(R.id.tv_item_cart_product_title).text = model.title
-            holder.itemView.findViewById<TextView>(R.id.tv_item_cart_product_price).text = "$${model.price}"
-            holder.itemView.findViewById<TextView>(R.id.tv_item_cart_product_quantity).text = model.cart_quantity
+            GlideLoader(context).loadProductPicture(
+                model.image,
+                holder.itemView.findViewById(R.id.iv_item_cart_product_image)
+            )
+            holder.itemView.findViewById<TextView>(R.id.tv_item_cart_product_title).text =
+                model.title
+            holder.itemView.findViewById<TextView>(R.id.tv_item_cart_product_price).text =
+                "$${model.price}"
+            holder.itemView.findViewById<TextView>(R.id.tv_item_cart_product_quantity).text =
+                model.cart_quantity
 
             if (model.cart_quantity == "0") {
-                holder.itemView.findViewById<ImageView>(R.id.iv_item_cart_remove_item).visibility = View.INVISIBLE
-                holder.itemView.findViewById<ImageView>(R.id.iv_item_cart_add_item).visibility = View.INVISIBLE
+                holder.itemView.findViewById<ImageView>(R.id.iv_item_cart_remove_item).visibility =
+                    View.INVISIBLE
+                holder.itemView.findViewById<ImageView>(R.id.iv_item_cart_add_item).visibility =
+                    View.INVISIBLE
                 holder.itemView.findViewById<TextView>(R.id.tv_item_cart_product_quantity).text =
                     context.resources.getString(R.string.lbl_out_of_stock)
+
+                if (updateCartItems) {
+                    holder.itemView.findViewById<ImageView>(R.id.iv_item_cart_delete_item).visibility =
+                        View.VISIBLE
+                } else {
+                    holder.itemView.findViewById<ImageView>(R.id.iv_item_cart_delete_item).visibility =
+                        View.GONE
+                }
+
             } else {
-                holder.itemView.findViewById<ImageView>(R.id.iv_item_cart_remove_item).visibility = View.VISIBLE
-                holder.itemView.findViewById<ImageView>(R.id.iv_item_cart_add_item).visibility = View.VISIBLE
+                if (updateCartItems) {
+                    holder.itemView.findViewById<ImageView>(R.id.iv_item_cart_remove_item).visibility =
+                        View.VISIBLE
+                    holder.itemView.findViewById<ImageView>(R.id.iv_item_cart_add_item).visibility =
+                        View.VISIBLE
+                    holder.itemView.findViewById<ImageView>(R.id.iv_item_cart_delete_item).visibility =
+                        View.VISIBLE
+                } else {
+                    holder.itemView.findViewById<ImageView>(R.id.iv_item_cart_remove_item).visibility =
+                        View.GONE
+                    holder.itemView.findViewById<ImageView>(R.id.iv_item_cart_add_item).visibility =
+                        View.GONE
+                    holder.itemView.findViewById<ImageView>(R.id.iv_item_cart_delete_item).visibility =
+                        View.GONE
+
+                }
             }
 
-            holder.itemView.findViewById<ImageView>(R.id.iv_item_cart_delete_item).setOnClickListener {
-                when(context){
-                   is CartListActivity -> {
-                        context.showProgressDialog()
+            holder.itemView.findViewById<ImageView>(R.id.iv_item_cart_delete_item)
+                .setOnClickListener {
+                    when (context) {
+                        is CartListActivity -> {
+                            context.showProgressDialog()
+                        }
+                    }
+                    FirestoreClass().removeItemFromCart(context, model.id)
+                }
+
+            holder.itemView.findViewById<ImageView>(R.id.iv_item_cart_remove_item)
+                .setOnClickListener {
+                    if (model.cart_quantity == "1") {
+                        FirestoreClass().removeItemFromCart(context, model.id)
+                    } else {
+                        val cartQuantity: Int = model.cart_quantity.toInt()
+                        val itemHashMap = HashMap<String, Any>()
+
+                        itemHashMap[Constants.CART_QUANTITY] = (cartQuantity - 1).toString()
+
+                        FirestoreClass().updateMyCart(context, model.id, itemHashMap)
                     }
                 }
-                FirestoreClass().removeItemFromCart(context, model.id)
-            }
-
-            holder.itemView.findViewById<ImageView>(R.id.iv_item_cart_remove_item).setOnClickListener {
-                if (model.cart_quantity == "1") {
-                    FirestoreClass().removeItemFromCart(context, model.id)
-                } else {
-                    val cartQuantity: Int = model.cart_quantity.toInt()
-                    val itemHashMap = HashMap<String, Any>()
-
-                    itemHashMap[Constants.CART_QUANTITY] = (cartQuantity - 1).toString()
-
-                    FirestoreClass().updateMyCart(context, model.id, itemHashMap)
-                }
-            }
 
             holder.itemView.findViewById<ImageView>(R.id.iv_item_cart_add_item).setOnClickListener {
                 val cartQuantity: Int = model.cart_quantity.toInt()
@@ -81,7 +115,8 @@ open class CartItemsListAdapter(
                         context.showErrorSnackBar(
                             context.resources.getString(
                                 R.string.msg_for_available_stock, model.stock_quantity
-                            ), true)
+                            ), true
+                        )
                     }
                 }
             }

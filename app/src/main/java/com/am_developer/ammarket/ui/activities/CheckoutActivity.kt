@@ -3,12 +3,14 @@ package com.am_developer.ammarket.ui.activities
 import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.View
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.am_developer.ammarket.R
 import com.am_developer.ammarket.databinding.ActivityCheckoutBinding
 import com.am_developer.ammarket.firestore.FirestoreClass
 import com.am_developer.ammarket.models.Address
 import com.am_developer.ammarket.models.CartItem
 import com.am_developer.ammarket.models.Product
+import com.am_developer.ammarket.ui.adapter.CartItemsListAdapter
 import com.am_developer.ammarket.utils.Constants
 
 class CheckoutActivity : BaseActivity() {
@@ -57,7 +59,21 @@ class CheckoutActivity : BaseActivity() {
 
     fun successCartItemsList(cartList: ArrayList<CartItem>) {
         hideProgressDialog()
+        for (product in mProductList) {
+            for (cartItem in cartList) {
+                if (product.product_id == cartItem.product_id) {
+                    cartItem.stock_quantity = product.stock_quantity
+                }
+            }
+        }
         mCartItemsList = cartList
+
+        binding.rvCheckoutCartListItems.layoutManager = LinearLayoutManager(this@CheckoutActivity)
+        binding.rvCheckoutCartListItems.setHasFixedSize(true)
+
+        val cartListAdapter = CartItemsListAdapter(this@CheckoutActivity, mCartItemsList, false)
+        binding.rvCheckoutCartListItems.adapter = cartListAdapter
+
     }
 
     private fun getProductList() {
