@@ -13,6 +13,7 @@ data class Order (
     val sub_total_amount : String = "",
     val shipping_charge: String = "",
     val total_amount: String = "",
-    var id: String = "",
-    var status: String = ""
+    val payment_mode: String = "",
+    val how_much_change: String = "",
+    var id: String = ""
         ) : Parcelable

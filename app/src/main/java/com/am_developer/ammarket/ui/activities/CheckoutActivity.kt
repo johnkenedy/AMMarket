@@ -17,6 +17,8 @@ class CheckoutActivity : BaseActivity() {
     private var mAddressDetails: Address? = null
     private var mSubTotal: Double = 0.0
     private var mTotalAmount: Double = 0.0
+    private var mHowMuchChange: String = ""
+    private var mPaymentMode: String = ""
 
     private lateinit var binding: ActivityCheckoutBinding
     private lateinit var mProductList: ArrayList<Product>
@@ -49,6 +51,14 @@ class CheckoutActivity : BaseActivity() {
         }
         getProductList()
 
+        mPaymentMode = if (binding.rbCashOnDelivery.isChecked) {
+            "Cash on Delivery"
+        } else {
+            "Machine Card"
+        }
+
+        binding.rgPaymentMode.isSelected.toString()
+
         binding.btnCheckoutPlaceOrder.setOnClickListener {
             placeAnOrder()
         }
@@ -76,7 +86,7 @@ class CheckoutActivity : BaseActivity() {
         showProgressDialog()
 
         if (mAddressDetails != null) {
-            val order = Order (
+            val order = Order(
                 FirestoreClass().getCurrentUserID(),
                 mCartItemsList,
                 mAddressDetails!!,
@@ -84,8 +94,10 @@ class CheckoutActivity : BaseActivity() {
                 mCartItemsList[0].image,
                 mSubTotal.toString(),
                 "10.0",
-                mTotalAmount.toString()
-                )
+                mTotalAmount.toString(),
+                mPaymentMode,
+                binding.etNeedChange.text.toString()
+            )
 
             FirestoreClass().placeOrder(this@CheckoutActivity, order)
         }
@@ -120,13 +132,19 @@ class CheckoutActivity : BaseActivity() {
             }
         }
 
-        binding.tvCheckoutSubTotal.text = "S$mSubTotal"
+        val roundedSubTotal = "%.2f".format(mSubTotal).toDouble()
+
+        binding.tvCheckoutSubTotal.text = "S$roundedSubTotal"
         binding.tvCheckoutShippingCharge.text = "$10.00"
 
         if (mSubTotal > 0) {
             binding.llCheckout.visibility = View.VISIBLE
             mTotalAmount = mSubTotal + 10.0
-            binding.tvCheckoutTotalAmount.text = "$$mTotalAmount"
+
+            val roundedTotal = "%.2f".format(mTotalAmount).toDouble()
+
+            binding.tvCheckoutTotalAmount.text = "$$roundedTotal"
+
         } else {
             binding.llCheckout.visibility = View.GONE
         }
