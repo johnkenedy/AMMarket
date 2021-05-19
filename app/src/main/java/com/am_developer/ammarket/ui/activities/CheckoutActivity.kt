@@ -1,24 +1,26 @@
 package com.am_developer.ammarket.ui.activities
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.am_developer.ammarket.R
 import com.am_developer.ammarket.databinding.ActivityCheckoutBinding
 import com.am_developer.ammarket.firestore.FirestoreClass
-import com.am_developer.ammarket.models.Address
-import com.am_developer.ammarket.models.CartItem
-import com.am_developer.ammarket.models.Product
+import com.am_developer.ammarket.models.*
 import com.am_developer.ammarket.ui.adapter.CartItemsListAdapter
 import com.am_developer.ammarket.utils.Constants
 
 class CheckoutActivity : BaseActivity() {
 
+    private var mAddressDetails: Address? = null
+    private var mSubTotal: Double = 0.0
+    private var mTotalAmount: Double = 0.0
+
     private lateinit var binding: ActivityCheckoutBinding
     private lateinit var mProductList: ArrayList<Product>
     private lateinit var mCartItemsList: ArrayList<CartItem>
-    private var mAddressDetails: Address? = null
 
     @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -46,6 +48,11 @@ class CheckoutActivity : BaseActivity() {
             }
         }
         getProductList()
+
+        binding.btnCheckoutPlaceOrder.setOnClickListener {
+            placeAnOrder()
+        }
+
     }
 
     fun successProductsListFromFireStore(productList: ArrayList<Product>) {
@@ -57,6 +64,36 @@ class CheckoutActivity : BaseActivity() {
         FirestoreClass().getCartList(this@CheckoutActivity)
     }
 
+    fun orderPlacedSuccessfully() {
+        hideProgressDialog()
+        val intent = Intent(this@CheckoutActivity, MainActivity::class.java)
+        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+        startActivity(intent)
+        finish()
+    }
+
+    private fun placeAnOrder() {
+        showProgressDialog()
+
+        if (mAddressDetails != null) {
+            val order = Order (
+                FirestoreClass().getCurrentUserID(),
+                mCartItemsList,
+                mAddressDetails!!,
+                "My order: ${System.currentTimeMillis()}",
+                mCartItemsList[0].image,
+                mSubTotal.toString(),
+                "10.0",
+                mTotalAmount.toString()
+                )
+
+            FirestoreClass().placeOrder(this@CheckoutActivity, order)
+        }
+
+
+    }
+
+    @SuppressLint("SetTextI18n")
     fun successCartItemsList(cartList: ArrayList<CartItem>) {
         hideProgressDialog()
         for (product in mProductList) {
@@ -74,6 +111,25 @@ class CheckoutActivity : BaseActivity() {
         val cartListAdapter = CartItemsListAdapter(this@CheckoutActivity, mCartItemsList, false)
         binding.rvCheckoutCartListItems.adapter = cartListAdapter
 
+        for (item in mCartItemsList) {
+            val availableQuantity = item.stock_quantity.toInt()
+            if (availableQuantity > 0) {
+                val price = item.price.toDouble()
+                val quantity = item.cart_quantity.toInt()
+                mSubTotal += (price * quantity)
+            }
+        }
+
+        binding.tvCheckoutSubTotal.text = "S$mSubTotal"
+        binding.tvCheckoutShippingCharge.text = "$10.00"
+
+        if (mSubTotal > 0) {
+            binding.llCheckout.visibility = View.VISIBLE
+            mTotalAmount = mSubTotal + 10.0
+            binding.tvCheckoutTotalAmount.text = "$$mTotalAmount"
+        } else {
+            binding.llCheckout.visibility = View.GONE
+        }
     }
 
     private fun getProductList() {

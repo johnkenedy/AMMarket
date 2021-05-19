@@ -7,10 +7,7 @@ import android.content.SharedPreferences
 import android.net.Uri
 import android.util.Log
 import androidx.fragment.app.Fragment
-import com.am_developer.ammarket.models.Address
-import com.am_developer.ammarket.models.CartItem
-import com.am_developer.ammarket.models.Product
-import com.am_developer.ammarket.models.User
+import com.am_developer.ammarket.models.*
 import com.am_developer.ammarket.ui.activities.*
 import com.am_developer.ammarket.ui.fragment.*
 import com.am_developer.ammarket.utils.Constants
@@ -82,6 +79,9 @@ class FirestoreClass {
                     is ProfileFragment -> {
                         fragment.userDetailsSuccess(user)
                     }
+                    is UserDetailsFragment -> {
+                        fragment.userDetailsSuccess(user)
+                    }
                 }
             }
             .addOnFailureListener { e ->
@@ -90,6 +90,9 @@ class FirestoreClass {
                         fragment.hideProgressDialog()
                     }
                     is ProfileFragment -> {
+                        fragment.hideProgressDialog()
+                    }
+                    is UserDetailsFragment -> {
                         fragment.hideProgressDialog()
                     }
                 }
@@ -112,12 +115,18 @@ class FirestoreClass {
                     is ProfileFragment -> {
                         fragment.userProfileUpdateSuccess()
                     }
+                    is UserDetailsFragment -> {
+                        fragment.userProfileUpdateSuccess()
+                    }
                 }
 
             }
             .addOnFailureListener { e ->
                 when (fragment) {
                     is ProfileFragment -> {
+                        fragment.hideProgressDialog()
+                    }
+                    is UserDetailsFragment -> {
                         fragment.hideProgressDialog()
                     }
                 }
@@ -424,6 +433,22 @@ class FirestoreClass {
             }.addOnFailureListener { e ->
                 activity.hideProgressDialog()
                 Log.e(activity.javaClass.simpleName, "Error while adding the address.", e)
+            }
+    }
+
+    fun placeOrder(activity: CheckoutActivity, order: Order) {
+        mFireStore.collection(Constants.ORDERS)
+            .document()
+            .set(order, SetOptions.merge())
+            .addOnSuccessListener {
+
+            activity.orderPlacedSuccessfully()
+
+            }
+            .addOnFailureListener { e ->
+                activity.hideProgressDialog()
+                Log.e(activity.javaClass.simpleName,
+                "Error while placing an order.", e)
             }
     }
 

@@ -6,19 +6,21 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
-import android.text.TextUtils
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.viewpager.widget.ViewPager
 import com.am_developer.ammarket.R
 import com.am_developer.ammarket.databinding.FragmentProfileBinding
 import com.am_developer.ammarket.firestore.FirestoreClass
 import com.am_developer.ammarket.models.User
 import com.am_developer.ammarket.ui.activities.MainActivity
+import com.am_developer.ammarket.ui.adapter.TabLayoutProfileAdapter
 import com.am_developer.ammarket.utils.Constants
 import com.am_developer.ammarket.utils.GlideLoader
+import com.google.android.material.tabs.TabLayout
 import java.io.IOException
 
 class ProfileFragment : BaseFragment(), View.OnClickListener {
@@ -32,6 +34,9 @@ class ProfileFragment : BaseFragment(), View.OnClickListener {
     private var mSelectedImageFileUri: Uri? = null
     private var mUserProfileImageURL: String = ""
 
+    private var tabLayout: TabLayout? = null
+    private var viewPager: ViewPager? = null
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -39,17 +44,55 @@ class ProfileFragment : BaseFragment(), View.OnClickListener {
     ): View {
 
         _binding = FragmentProfileBinding.inflate(inflater, container, false)
-        val root: View = binding.root
+        binding.ivProfileUserImage.setOnClickListener(this@ProfileFragment)
 
-        binding.ivProfileChangeImageProfile.setOnClickListener(this@ProfileFragment)
-        binding.btnProfileSaveChanges.setOnClickListener(this@ProfileFragment)
+        tabLayout = binding.tabLayout
+        viewPager = binding.viewPager
 
-        return root
+        tabLayout!!.addTab(tabLayout!!.newTab().setText("My Details"))
+        tabLayout!!.addTab(tabLayout!!.newTab().setText("My Orders"))
+        tabLayout!!.addTab(tabLayout!!.newTab().setText("Login Fragment"))
+        tabLayout!!.addTab(tabLayout!!.newTab().setText("Ta de Sacanagem?"))
+
+        tabLayout!!.tabGravity = TabLayout.GRAVITY_FILL
+
+        tabPosition()
+
+        return binding.root
+    }
+
+    private fun tabPosition() {
+
+        val adapter = activity?.let {
+            TabLayoutProfileAdapter(
+                requireActivity(),
+                it.supportFragmentManager,
+                tabLayout!!.tabCount
+            )
+        }
+
+        viewPager!!.adapter = adapter
+
+        viewPager!!.addOnPageChangeListener(TabLayout.TabLayoutOnPageChangeListener(tabLayout))
+
+        tabLayout!!.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
+            override fun onTabSelected(tab: TabLayout.Tab) {
+                viewPager!!.currentItem = tab.position
+            }
+
+            override fun onTabUnselected(tab: TabLayout.Tab) {
+
+            }
+
+            override fun onTabReselected(tab: TabLayout.Tab) {
+
+            }
+        })
     }
 
     override fun onClick(view: View) {
         when (view.id) {
-            R.id.iv_profile_change_image_profile ->
+            R.id.iv_profile_user_image -> {
                 if (
                     context?.let {
                         ContextCompat.checkSelfPermission(
@@ -57,27 +100,17 @@ class ProfileFragment : BaseFragment(), View.OnClickListener {
                         )
                     } == PackageManager.PERMISSION_GRANTED) {
                     Constants.showImageChooser(this@ProfileFragment)
+
                 } else {
                     ActivityCompat.requestPermissions(
                         context as Activity, arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE),
                         Constants.READ_STORAGE_PERMISSION_CODE
                     )
                 }
-            R.id.btn_profile_save_changes -> {
-
-                if (validateUserProfileDetails()) {
-                    showProgressDialog()
-                    if (mSelectedImageFileUri != null)
-                        FirestoreClass().uploadImageToCloudStorage(
-                            this@ProfileFragment,
-                            mSelectedImageFileUri
-                        )
-                } else {
-                    updateUserProfileDetails()
-                }
             }
         }
     }
+
 
     private fun updateUserProfileDetails() {
         val userHashMap = HashMap<String, Any>()
@@ -85,14 +118,6 @@ class ProfileFragment : BaseFragment(), View.OnClickListener {
         if (mUserProfileImageURL.isNotEmpty()) {
             userHashMap[Constants.IMAGE] = mUserProfileImageURL
         }
-
-        val mobileNumber =
-            binding.etRegisterPhoneNumber.text.toString().trim { it <= ' ' }
-
-        if (mobileNumber.isNotEmpty()) {
-            userHashMap[Constants.LOGGED_IN_MOBILE] = mobileNumber
-        }
-
         FirestoreClass().updateUserProfileData(this, userHashMap)
     }
 
@@ -150,21 +175,6 @@ class ProfileFragment : BaseFragment(), View.OnClickListener {
         }
     }
 
-    private fun validateUserProfileDetails(): Boolean {
-        return when {
-            TextUtils.isEmpty(binding.etRegisterPhoneNumber.text.toString().trim { it <= ' ' }) -> {
-                showSnackBarInFragment(
-                    resources.getString(R.string.err_msg_enter_mobile_number),
-                    true
-                )
-                false
-            }
-            else -> {
-                true
-            }
-        }
-    }
-
     fun imageUploadSuccess(imageURL: String) {
         mUserProfileImageURL = imageURL
         updateUserProfileDetails()
@@ -176,15 +186,19 @@ class ProfileFragment : BaseFragment(), View.OnClickListener {
     }
 
     fun userDetailsSuccess(user: User) {
-        hideProgressDialog()
         context?.let { GlideLoader(it).loadUserPicture(user.image, binding.ivProfileUserImage) }
-        binding.etProfileName.setText(user.name)
-        binding.etProfileName.isEnabled = false
-        binding.etRegisterCpf.setText(user.cpf.toString())
-        binding.etRegisterCpf.isEnabled = false
-        binding.etRegisterEmail.setText(user.email)
-        binding.etRegisterEmail.isEnabled = false
-        binding.etRegisterPhoneNumber.setText(user.mobile)
+        binding.tvFragmentProfileName.text = user.name
+        binding.tvFragmentProfileEmail.text = user.email
+        hideProgressDialog()
+    }
+
+    fun updatePhoto() {
+        if (mSelectedImageFileUri != null) {
+            FirestoreClass().uploadImageToCloudStorage(
+                this@ProfileFragment,
+                mSelectedImageFileUri
+            )
+        }
     }
 
     override fun onResume() {
@@ -196,5 +210,4 @@ class ProfileFragment : BaseFragment(), View.OnClickListener {
         super.onDestroyView()
         _binding = null
     }
-
 }

@@ -13,6 +13,7 @@ object Constants {
     const val CATEGORY: String = "category"
     const val ADDRESSES: String = "addresses"
     const val LIST: String = "list"
+    const val ORDERS: String = "orders"
 
     const val AM_PREFERENCES: String = "AMPrefs"
     const val LOGGED_IN_USERNAME: String = "logged_in_username"
