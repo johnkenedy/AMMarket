@@ -15,8 +15,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AMMarket"
         tools:ignore="LockedOrientationActivity">
-        <activity android:name=".ui.activities.CheckoutActivity"
-            android:screenOrientation="portrait"/>
+        <activity android:name=".ui.activities.MyOrderDetailsActivity"></activity>
+        <activity
+            android:name=".ui.activities.CheckoutActivity"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".ui.activities.AddEditAddAddressActivity"
             android:screenOrientation="portrait" />

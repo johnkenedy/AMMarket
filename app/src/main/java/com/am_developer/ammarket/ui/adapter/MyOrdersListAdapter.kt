@@ -32,7 +32,7 @@ class MyOrdersListAdapter(
             )
 
             holder.itemView.tv_order_item_title.text = model.title
-            holder.itemView.tv_order_item_address.text = model.address.toString()
+            holder.itemView.tv_order_item_address.text = "${model.address.address}, ${model.address.zipCode}"
             holder.itemView.tv_order_item_payment_mode.text = model.payment_mode
             holder.itemView.tv_order_item_price.text = "Total: $${model.total_amount}"
             holder.itemView.tv_order_item_shipping_progress.text = model.shipping_progress

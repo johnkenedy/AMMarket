@@ -51,8 +51,6 @@ class ProfileFragment : BaseFragment(), View.OnClickListener {
 
         tabLayout!!.addTab(tabLayout!!.newTab().setText("My Details"))
         tabLayout!!.addTab(tabLayout!!.newTab().setText("My Orders"))
-        tabLayout!!.addTab(tabLayout!!.newTab().setText("Login Fragment"))
-        tabLayout!!.addTab(tabLayout!!.newTab().setText("Ta de Sacanagem?"))
 
         tabLayout!!.tabGravity = TabLayout.GRAVITY_FILL
 
@@ -204,6 +202,11 @@ class ProfileFragment : BaseFragment(), View.OnClickListener {
     override fun onResume() {
         super.onResume()
         getUserDetails()
+    }
+
+    override fun onPause() {
+        super.onPause()
+        onDestroy()
     }
 
     override fun onDestroyView() {

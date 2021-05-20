@@ -114,7 +114,7 @@
 
     <string name="user_details_fragment">My Details</string>
     <string name="my_purchases_fragment">My Orders</string>
-    
+
     <string name="no_orders_placed_yet">No orders placed yet!</string>
 
 </resources>
