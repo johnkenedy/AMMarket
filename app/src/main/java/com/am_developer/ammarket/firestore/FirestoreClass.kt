@@ -436,19 +436,77 @@ class FirestoreClass {
             }
     }
 
+    fun updateAllDetails(activity: CheckoutActivity, cartList: ArrayList<CartItem>) {
+        val writeBatch = mFireStore.batch()
+
+        for (cartItem in cartList) {
+
+            val productHasMap = HashMap<String, Any>()
+            productHasMap[Constants.STOCK_QUANTITY] =
+                (cartItem.stock_quantity.toInt() - cartItem.cart_quantity.toInt()).toString()
+
+            val documentReference = mFireStore.collection(Constants.PRODUCTS)
+                .document(cartItem.product_id)
+
+            writeBatch.update(documentReference, productHasMap)
+        }
+
+        for (cartItem in cartList) {
+            val documentReference = mFireStore.collection(Constants.CART_ITEMS)
+                .document(cartItem.id)
+            writeBatch.delete(documentReference)
+        }
+
+        writeBatch.commit().addOnSuccessListener {
+            activity.allDetailsUpdatedSuccessfully()
+        }.addOnFailureListener { e ->
+            activity.hideProgressDialog()
+            Log.e(
+                activity.javaClass.simpleName,
+                "Error while updating all the details after order placed.",
+                e
+            )
+        }
+
+    }
+
+    fun getMyOrdersList(fragment: MyPurchasesFragment) {
+        mFireStore.collection(Constants.ORDERS)
+            .whereEqualTo(Constants.USER_ID, getCurrentUserID())
+            .get()
+            .addOnSuccessListener { document ->
+                val list: ArrayList<Order> = ArrayList()
+                for (i in document.documents) {
+
+                    val orderItem = i.toObject(Order::class.java)!!
+                    orderItem.id = i.id
+
+                    list.add(orderItem)
+                }
+
+                fragment.populateOrdersListUnUI(list)
+
+            }.addOnFailureListener { e ->
+                fragment.hideProgressDialog()
+                Log.e(fragment.javaClass.simpleName, "Error while getting the orders list.", e)
+            }
+    }
+
     fun placeOrder(activity: CheckoutActivity, order: Order) {
         mFireStore.collection(Constants.ORDERS)
             .document()
             .set(order, SetOptions.merge())
             .addOnSuccessListener {
 
-            activity.orderPlacedSuccessfully()
+                activity.orderPlacedSuccessfully()
 
             }
             .addOnFailureListener { e ->
                 activity.hideProgressDialog()
-                Log.e(activity.javaClass.simpleName,
-                "Error while placing an order.", e)
+                Log.e(
+                    activity.javaClass.simpleName,
+                    "Error while placing an order.", e
+                )
             }
     }
 

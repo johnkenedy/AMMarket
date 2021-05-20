@@ -4,7 +4,6 @@ import android.content.Context
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
-import com.am_developer.ammarket.ui.fragment.LoginFragment
 import com.am_developer.ammarket.ui.fragment.MyPurchasesFragment
 import com.am_developer.ammarket.ui.fragment.UserDetailsFragment
 
@@ -24,9 +23,6 @@ class TabLayoutProfileAdapter(
             }
             1 -> {
                 MyPurchasesFragment()
-            }
-            2 -> {
-                LoginFragment()
             }
             else -> UserDetailsFragment()
         }

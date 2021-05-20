@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp"
+    app:cardCornerRadius="8dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/img_address"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_margin="10dp"
+            app:cardCornerRadius="5dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/iv_order_item_image"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                tools:src="@drawable/address_gif" />
+        </androidx.cardview.widget.CardView>
+
+        <TextView
+            android:id="@+id/tv_order_item_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:maxLines="1"
+            android:textColor="@color/pink"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toTopOf="@id/tv_order_item_address"
+            app:layout_constraintEnd_toStartOf="@+id/cardView2"
+            app:layout_constraintStart_toEndOf="@+id/img_address"
+            app:layout_constraintTop_toTopOf="@id/img_address"
+            tools:text="John Kenedy Neves" />
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="15dp"
+            app:cardCornerRadius="5dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/img_address">
+
+            <TextView
+                android:id="@+id/tv_order_item_shipping_progress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/pink"
+                android:maxLines="1"
+                android:paddingStart="6dp"
+                android:paddingTop="3dp"
+                android:paddingEnd="6dp"
+                android:paddingBottom="3dp"
+                android:textColor="@color/white"
+                android:textSize="11sp"
+                android:textStyle="bold"
+                tools:text="Waiting Attendant" />
+
+        </androidx.cardview.widget.CardView>
+
+        <TextView
+            android:id="@+id/tv_order_item_address"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:maxLines="1"
+            android:textColor="@color/pink"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toTopOf="@id/tv_order_item_price"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/img_address"
+            app:layout_constraintTop_toBottomOf="@id/tv_order_item_title"
+            tools:text="Rua Prados, 359" />
+
+        <TextView
+            android:id="@+id/tv_order_item_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginBottom="10dp"
+            android:maxLines="1"
+            android:textColor="@color/pink"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="@id/img_address"
+            app:layout_constraintStart_toEndOf="@+id/img_address"
+            app:layout_constraintTop_toBottomOf="@id/tv_order_item_address"
+            tools:text="Total: $99.99" />
+
+        <TextView
+            android:id="@+id/tv_order_item_payment_mode"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginBottom="10dp"
+            android:maxLines="1"
+            android:textColor="@color/pink"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="@id/img_address"
+            app:layout_constraintStart_toEndOf="@+id/tv_order_item_price"
+            app:layout_constraintTop_toBottomOf="@id/tv_order_item_address"
+            tools:text="Cash on Delivery" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>

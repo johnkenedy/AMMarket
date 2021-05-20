@@ -15,5 +15,6 @@ data class Order (
     val total_amount: String = "",
     val payment_mode: String = "",
     val how_much_change: String = "",
+    var shipping_progress: String = "",
     var id: String = ""
         ) : Parcelable

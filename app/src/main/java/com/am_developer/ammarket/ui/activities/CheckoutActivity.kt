@@ -74,12 +74,16 @@ class CheckoutActivity : BaseActivity() {
         FirestoreClass().getCartList(this@CheckoutActivity)
     }
 
-    fun orderPlacedSuccessfully() {
+    fun allDetailsUpdatedSuccessfully() {
         hideProgressDialog()
         val intent = Intent(this@CheckoutActivity, MainActivity::class.java)
         intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
         startActivity(intent)
         finish()
+    }
+
+    fun orderPlacedSuccessfully() {
+        FirestoreClass().updateAllDetails(this, mCartItemsList)
     }
 
     private fun placeAnOrder() {
@@ -96,13 +100,12 @@ class CheckoutActivity : BaseActivity() {
                 "10.0",
                 mTotalAmount.toString(),
                 mPaymentMode,
-                binding.etNeedChange.text.toString()
+                binding.etNeedChange.text.toString(),
+                "Waiting Attendant"
             )
 
             FirestoreClass().placeOrder(this@CheckoutActivity, order)
         }
-
-
     }
 
     @SuppressLint("SetTextI18n")
