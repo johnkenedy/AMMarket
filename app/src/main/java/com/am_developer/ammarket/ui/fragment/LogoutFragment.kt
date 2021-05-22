@@ -9,6 +9,8 @@ import androidx.fragment.app.Fragment
 import com.am_developer.ammarket.R
 import com.am_developer.ammarket.ui.activities.LoginActivity
 import com.google.firebase.auth.FirebaseAuth
+import java.util.*
+import kotlin.concurrent.schedule
 
 class LogoutFragment : Fragment() {
 
@@ -17,7 +19,9 @@ class LogoutFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        logOut()
+        Timer("SettingUp", false).schedule(1500) {
+            logOut()
+        }
         return inflater.inflate(R.layout.fragment_logout, container, false)
     }
 

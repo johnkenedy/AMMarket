@@ -1,16 +1,14 @@
 package com.am_developer.ammarket.ui.fragment
 
-import android.Manifest
 import android.app.Activity
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
 import androidx.viewpager.widget.ViewPager
 import com.am_developer.ammarket.R
 import com.am_developer.ammarket.databinding.FragmentProfileBinding
@@ -22,6 +20,7 @@ import com.am_developer.ammarket.utils.Constants
 import com.am_developer.ammarket.utils.GlideLoader
 import com.google.android.material.tabs.TabLayout
 import java.io.IOException
+
 
 class ProfileFragment : BaseFragment(), View.OnClickListener {
 
@@ -75,6 +74,7 @@ class ProfileFragment : BaseFragment(), View.OnClickListener {
 
         tabLayout!!.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
             override fun onTabSelected(tab: TabLayout.Tab) {
+
                 viewPager!!.currentItem = tab.position
             }
 
@@ -91,20 +91,20 @@ class ProfileFragment : BaseFragment(), View.OnClickListener {
     override fun onClick(view: View) {
         when (view.id) {
             R.id.iv_profile_user_image -> {
-                if (
-                    context?.let {
-                        ContextCompat.checkSelfPermission(
-                            it, Manifest.permission.READ_EXTERNAL_STORAGE
-                        )
-                    } == PackageManager.PERMISSION_GRANTED) {
-                    Constants.showImageChooser(this@ProfileFragment)
-
-                } else {
-                    ActivityCompat.requestPermissions(
-                        context as Activity, arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE),
-                        Constants.READ_STORAGE_PERMISSION_CODE
-                    )
-                }
+//                if (
+//                    context?.let {
+//                        ContextCompat.checkSelfPermission(
+//                            it, Manifest.permission.READ_EXTERNAL_STORAGE
+//                        )
+//                    } == PackageManager.PERMISSION_GRANTED) {
+//                    Constants.showImageChooser(this@ProfileFragment)
+//
+//                } else {
+//                    ActivityCompat.requestPermissions(
+//                        context as Activity, arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE),
+//                        Constants.READ_STORAGE_PERMISSION_CODE
+//                    )
+//                }
             }
         }
     }
@@ -199,18 +199,13 @@ class ProfileFragment : BaseFragment(), View.OnClickListener {
         }
     }
 
+    override fun onPause() {
+        Log.i("detach test", "onPause called")
+        super.onPause()
+    }
+
     override fun onResume() {
         super.onResume()
         getUserDetails()
-    }
-
-    override fun onPause() {
-        super.onPause()
-        onDestroy()
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
     }
 }

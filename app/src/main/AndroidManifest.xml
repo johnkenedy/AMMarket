@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.am_developer.ammarket">
+    package="com.am_developer.ammarket" >
 
     <permission android:name="READ_PHONE_STATE" />
 
@@ -14,8 +14,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AMMarket"
-        tools:ignore="LockedOrientationActivity">
-        <activity android:name=".ui.activities.MyOrderDetailsActivity"></activity>
+        tools:ignore="LockedOrientationActivity" >
+        <activity android:name=".ui.activities.MyOrdersDetailsActivity"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".ui.activities.CheckoutActivity"
             android:screenOrientation="portrait" />
@@ -31,7 +32,7 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".ui.activities.SplashActivity"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

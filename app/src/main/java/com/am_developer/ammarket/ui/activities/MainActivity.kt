@@ -54,10 +54,9 @@ class MainActivity : BaseActivity() {
 
                     else -> HomeFragment()
                 }
-                supportFragmentManager.beginTransaction().replace(
-                    R.id.fragment_container,
-                    fragment
-                ).commit()
+
+                supportFragmentManager.beginTransaction().detach(ProfileFragment()).commitNow()
+                supportFragmentManager.beginTransaction().replace(R.id.fragment_container, fragment).commit()
 
                 verticalChipNavigationBar.setItemSelected(R.id.navigation_search, false)
                 verticalChipNavigationBar.setItemSelected(R.id.navigation_cart, false)

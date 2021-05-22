@@ -1,7 +1,6 @@
 package com.am_developer.ammarket.ui.adapter
 
 import android.content.Context
-import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,8 +8,6 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.am_developer.ammarket.R
-import com.am_developer.ammarket.ui.activities.ProductDetailsActivity
-import com.am_developer.ammarket.utils.Constants
 
 class HomeCategoriesListAdapter(private val context: Context) : RecyclerView.Adapter<HomeCategoriesListAdapter.MyViewHolder>() {
 
@@ -46,9 +43,9 @@ class HomeCategoriesListAdapter(private val context: Context) : RecyclerView.Ada
         holder.homeCategoryIMG.setImageResource(listCategoryImg[position])
 
         holder.itemView.setOnClickListener {
-            val intent = Intent(context, ProductDetailsActivity::class.java)
-            intent.putExtra(Constants.EXTRA_PRODUCT_CATEGORY, model)
-            context.startActivity(intent)
+//            val intent = Intent(context, ProductDetailsActivity::class.java)
+//            intent.putExtra(Constants.EXTRA_PRODUCT_CATEGORY, model)
+//            context.startActivity(intent)
         }
     }
 
