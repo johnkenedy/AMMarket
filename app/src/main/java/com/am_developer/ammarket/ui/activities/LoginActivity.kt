@@ -1,11 +1,13 @@
 package com.am_developer.ammarket.ui.activities
 
+import android.content.Intent
 import android.os.Bundle
 import com.am_developer.ammarket.R
 import com.am_developer.ammarket.databinding.ActivityLoginBinding
 import com.am_developer.ammarket.ui.fragment.ForgotPasswordFragment
 import com.am_developer.ammarket.ui.fragment.LoginFragment
 import com.am_developer.ammarket.ui.fragment.RegisterFragment
+import com.google.firebase.auth.FirebaseAuth
 import com.ismaeldivita.chipnavigation.ChipNavigationBar
 
 class LoginActivity : BaseActivity() {
@@ -13,11 +15,20 @@ class LoginActivity : BaseActivity() {
     private lateinit var binding: ActivityLoginBinding
     private lateinit var chipNavigationBar: ChipNavigationBar
 
+    lateinit var auth: FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        auth = FirebaseAuth.getInstance()
+        val currentUser = auth.currentUser
+
+        if (currentUser != null) {
+            startActivity(Intent(applicationContext, MainActivity::class.java))
+            finish()
+        }
 
         chipNavigationBar = binding.bottomNavRegisterLogin
 

@@ -14,7 +14,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AMMarket"
-        tools:ignore="LockedOrientationActivity" >
+        tools:ignore="LockedOrientationActivity"
+        android:usesCleartextTraffic="true">
         <activity android:name=".ui.activities.MyOrdersDetailsActivity"
             android:screenOrientation="portrait"/>
         <activity
@@ -26,7 +27,8 @@
         <activity
             android:name=".ui.activities.AddressListActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".ui.activities.CartListActivity" />
+        <activity android:name=".ui.activities.CartListActivity"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".ui.activities.BaseActivity"
             android:screenOrientation="portrait" />
@@ -42,6 +44,7 @@
         <activity
             android:name=".ui.activities.MainActivity"
             android:label="@string/title_activity_main"
+            android:launchMode = "singleTop"
             android:screenOrientation="portrait" />
         <activity
             android:name=".ui.activities.LoginActivity"

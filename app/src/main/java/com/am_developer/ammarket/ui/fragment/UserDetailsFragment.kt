@@ -84,8 +84,8 @@ class UserDetailsFragment : BaseFragment() {
     }
 
     override fun onResume() {
-        super.onResume()
         getUserDetails()
+        super.onResume()
     }
 
 }

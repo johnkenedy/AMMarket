@@ -157,7 +157,6 @@ class CheckoutActivity : BaseActivity() {
         showProgressDialog()
         FirestoreClass().getAllProductsList(this@CheckoutActivity)
     }
-
 }
 
 //when (mAddressDetails?.type) {

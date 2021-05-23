@@ -6,6 +6,7 @@ import android.view.animation.AnimationUtils
 import com.am_developer.ammarket.R
 import com.am_developer.ammarket.databinding.ActivityMainBinding
 import com.am_developer.ammarket.ui.fragment.*
+import com.google.firebase.auth.FirebaseAuth
 import com.ismaeldivita.chipnavigation.ChipNavigationBar
 
 class MainActivity : BaseActivity() {
@@ -55,8 +56,8 @@ class MainActivity : BaseActivity() {
                     else -> HomeFragment()
                 }
 
-                supportFragmentManager.beginTransaction().detach(ProfileFragment()).commitNow()
-                supportFragmentManager.beginTransaction().replace(R.id.fragment_container, fragment).commit()
+                supportFragmentManager.beginTransaction().replace(R.id.fragment_container, fragment)
+                    .commit()
 
                 verticalChipNavigationBar.setItemSelected(R.id.navigation_search, false)
                 verticalChipNavigationBar.setItemSelected(R.id.navigation_cart, false)

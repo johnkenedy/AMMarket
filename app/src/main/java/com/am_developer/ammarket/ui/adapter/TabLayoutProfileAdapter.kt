@@ -1,6 +1,7 @@
 package com.am_developer.ammarket.ui.adapter
 
 import android.content.Context
+import android.util.Log
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
@@ -17,6 +18,7 @@ class TabLayoutProfileAdapter(
     }
 
     override fun getItem(position: Int): Fragment {
+        Log.i("detach test", "Get item called")
         return when (position) {
             0 -> {
                 UserDetailsFragment()
