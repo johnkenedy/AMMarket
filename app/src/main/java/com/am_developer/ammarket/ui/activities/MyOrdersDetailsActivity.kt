@@ -61,13 +61,10 @@ class MyOrdersDetailsActivity : BaseActivity() {
 
         binding.tvMyOrderDetailsMobileNumber.text = orderDetails.address.mobileNumber
 
-        val subTotal = orderDetails.sub_total_amount
-        val roundedSubTotal = "%.2f".format(subTotal).toDouble()
-        binding.tvOrderDetailsSubTotal.text = roundedSubTotal.toString()
+
+        binding.tvOrderDetailsSubTotal.text = orderDetails.sub_total_amount
         binding.tvOrderDetailsShippingCharge.text = orderDetails.shipping_charge
-        val total = orderDetails.total_amount
-        val roundedTotal = "%.2f".format(total).toDouble()
-        binding.tvOrderDetailsTotalAmount.text = roundedTotal.toString()
+        binding.tvOrderDetailsTotalAmount.text = orderDetails.total_amount
 
     }
 
