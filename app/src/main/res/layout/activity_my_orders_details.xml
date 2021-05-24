@@ -126,7 +126,7 @@
                                 android:id="@+id/tv_order_status"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="@string/order_status_pending"
+                                tools:text="@string/order_status_pending"
                                 android:textAlignment="center"
                                 android:textColor="@color/pink" />
 
