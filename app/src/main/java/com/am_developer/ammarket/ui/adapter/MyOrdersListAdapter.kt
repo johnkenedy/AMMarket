@@ -2,12 +2,15 @@ package com.am_developer.ammarket.ui.adapter
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.am_developer.ammarket.R
 import com.am_developer.ammarket.models.Order
+import com.am_developer.ammarket.ui.activities.MyOrdersDetailsActivity
+import com.am_developer.ammarket.utils.Constants
 import com.am_developer.ammarket.utils.GlideLoader
 import kotlinx.android.synthetic.main.item_order_list_layout.view.*
 
@@ -36,6 +39,13 @@ class MyOrdersListAdapter(
             holder.itemView.tv_order_item_payment_mode.text = model.payment_mode
             holder.itemView.tv_order_item_price.text = "Total: $${model.total_amount}"
             holder.itemView.tv_order_item_shipping_progress.text = model.shipping_progress
+
+            holder.itemView.setOnClickListener {
+                val intent = Intent(context, MyOrdersDetailsActivity::class.java)
+                intent.putExtra(Constants.EXTRA_MY_ORDER_DETAILS, model)
+                context.startActivity(intent)
+            }
+
         }
     }
 
