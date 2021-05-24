@@ -6,7 +6,6 @@ import android.view.animation.AnimationUtils
 import com.am_developer.ammarket.R
 import com.am_developer.ammarket.databinding.ActivityMainBinding
 import com.am_developer.ammarket.ui.fragment.*
-import com.google.firebase.auth.FirebaseAuth
 import com.ismaeldivita.chipnavigation.ChipNavigationBar
 
 class MainActivity : BaseActivity() {
@@ -64,6 +63,13 @@ class MainActivity : BaseActivity() {
                 verticalChipNavigationBar.setItemSelected(R.id.navigation_coupon, false)
                 verticalChipNavigationBar.setItemSelected(R.id.navigation_list, false)
                 verticalChipNavigationBar.setItemSelected(R.id.navigation_address, false)
+
+                if (upDownMenu == 2) {
+                    val upMenu = AnimationUtils.loadAnimation(this@MainActivity, R.anim.up_menu)
+                    binding.verticalNavMain.animation = upMenu
+                    binding.downUpMenu.setImageResource(R.drawable.arrow_down)
+                    upDownMenu = 1
+                }
             }
         })
     }
@@ -91,7 +97,6 @@ class MainActivity : BaseActivity() {
                 chipNavigationBar.setItemSelected(R.id.navigation_profile, false)
             }
         })
-
     }
 
     private fun btnMenuAnimation() {

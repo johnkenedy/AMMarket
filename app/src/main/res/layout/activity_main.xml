@@ -89,7 +89,7 @@
             android:layout_gravity="bottom"
             android:layout_margin="12dp"
             android:background="@drawable/round_corners"
-            android:elevation="6dp"
+            android:elevation="35dp"
             app:cnb_iconSize="20dp"
             app:cnb_menuResource="@menu/bottom_nav_menu"
             app:cnb_orientationMode="horizontal"

@@ -124,5 +124,6 @@
     <string name="order_status_pending">Pending</string>
     <string name="order_details_lbl_shipping_address">Address</string>
     <string name="lbl_payment_mode">Payment Mode</string>
+    <string name="search_icon">Search Icon</string>
 
 </resources>
