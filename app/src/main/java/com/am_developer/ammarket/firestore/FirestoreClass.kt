@@ -194,8 +194,6 @@ class FirestoreClass {
                         fragment.successProductsListFromFireStore(productsList)
                     is CartFragment ->
                         fragment.successProductsListFromFireStore(productsList)
-                    is SearchFragment ->
-                        fragment.successProductsListFromFireStore(productsList)
                 }
 
             }

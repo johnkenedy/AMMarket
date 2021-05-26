@@ -10,6 +10,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.am_developer.ammarket.R
 import com.am_developer.ammarket.models.Product
+import com.am_developer.ammarket.ui.activities.BaseActivity
 import com.am_developer.ammarket.ui.activities.ProductDetailsActivity
 import com.am_developer.ammarket.utils.Constants
 import com.am_developer.ammarket.utils.GlideLoader
@@ -45,6 +46,7 @@ class SearchItemListAdapter(
                 val intent = Intent(context, ProductDetailsActivity::class.java)
                 intent.putExtra(Constants.EXTRA_PRODUCT_ID, model.product_id)
                 context.startActivity(intent)
+                BaseActivity().closeActivity()
             }
         }
     }
