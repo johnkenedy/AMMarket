@@ -32,6 +32,7 @@ class ProductDetailsActivity : BaseActivity(), View.OnClickListener {
 
         binding.btnProductDetailsAddToCart.setOnClickListener(this)
         binding.btnProductDetailsGoToCart.setOnClickListener(this)
+        binding.addItemToFav.setOnClickListener(this)
 
         setContentView(binding.root)
     }
@@ -120,6 +121,9 @@ class ProductDetailsActivity : BaseActivity(), View.OnClickListener {
                 R.id.btn_product_details_go_to_cart -> {
                     val intent = Intent(this@ProductDetailsActivity, CartListActivity::class.java)
                     startActivity(intent)
+                }
+                R.id.add_item_to_fav -> {
+                    //TODO Logic here is a mess
                 }
             }
         }

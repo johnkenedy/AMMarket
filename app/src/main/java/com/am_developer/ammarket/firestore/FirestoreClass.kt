@@ -176,6 +176,7 @@ class FirestoreClass {
             }
     }
 
+
     fun getProductsList(fragment: Fragment) {
         mFireStore.collection(Constants.PRODUCTS)
             .get()
@@ -237,6 +238,35 @@ class FirestoreClass {
             }
     }
 
+
+    fun getProductFavDetails(fragment: Fragment, productId: String) {
+        mFireStore.collection(Constants.PRODUCTS)
+            .document(productId)
+            .get()
+            .addOnSuccessListener { document ->
+                when (fragment) {
+                    is FavoriteFragment -> {
+                        val product = document.toObject(Product::class.java)
+                        if (product != null) {
+                            fragment.getProductFavDetailsSuccess(product)
+                        }
+                    }
+                }
+            }
+            .addOnFailureListener { e ->
+                when (fragment) {
+                    is FavoriteFragment -> {
+                        fragment.hideProgressDialog()
+                        Log.e(
+                            fragment.javaClass.simpleName,
+                            "Error while getting the product details.",
+                            e
+                        )
+                    }
+                }
+            }
+    }
+
     fun addCartItems(activity: ProductDetailsActivity, addToCart: CartItem) {
         mFireStore.collection(Constants.CART_ITEMS)
             .document()
@@ -253,6 +283,33 @@ class FirestoreClass {
                     e
                 )
 
+            }
+    }
+
+    fun addFavToCartItems(fragment: Fragment, addToCart: CartItem) {
+        mFireStore.collection(Constants.CART_ITEMS)
+            .document()
+            .set(addToCart, SetOptions.merge())
+            .addOnSuccessListener {
+                when (fragment) {
+                    is FavoriteFragment -> {
+                        fragment.addToCartSuccess()
+
+                    }
+                }
+            }
+            .addOnFailureListener { e ->
+                when (fragment) {
+                    is FavoriteFragment -> {
+                        fragment.hideProgressDialog()
+
+                        Log.e(
+                            fragment.javaClass.simpleName,
+                            "Error while creating the document for cart item.",
+                            e
+                        )
+                    }
+                }
             }
     }
 
@@ -299,6 +356,36 @@ class FirestoreClass {
             }
     }
 
+    fun checkFromFragmentIfItemExistInCart(fragment: Fragment, productId: String) {
+        mFireStore.collection(Constants.CART_ITEMS)
+            .whereEqualTo(Constants.PRODUCT_ID, productId)
+            .get()
+            .addOnSuccessListener { document ->
+                when (fragment) {
+                    is FavoriteFragment -> {
+                        if (document.documents.size > 0) {
+                            fragment.productExistsInCart()
+                        } else {
+                            fragment.hideProgressDialog()
+                        }
+                    }
+                }
+            }
+            .addOnFailureListener { e ->
+                when (fragment) {
+                    is FavoriteFragment -> {
+                        fragment.hideProgressDialog()
+                        Log.e(
+                            fragment.javaClass.simpleName,
+                            "Error while checking the existing cart list.",
+                            e
+                        )
+                    }
+
+                }
+            }
+    }
+
     fun getCartList(activity: Activity) {
         mFireStore.collection(Constants.CART_ITEMS)
             .whereEqualTo(Constants.USER_ID, getCurrentUserID())
@@ -332,7 +419,11 @@ class FirestoreClass {
                         activity.hideProgressDialog()
                     }
                 }
-                Log.e(activity.javaClass.simpleName, "Error while getting the cart list items.", e)
+                Log.e(
+                    activity.javaClass.simpleName,
+                    "Error while getting the cart list items.",
+                    e
+                )
             }
     }
 

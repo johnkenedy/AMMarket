@@ -7,6 +7,8 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Documentos/Desktop/Mobile/AMMarket/app/src/main/res/layout/activity_main.xml" value="0.1015625" />
+        <entry key="..\:/Documentos/Desktop/Mobile/AMMarket/app/src/main/res/layout/activity_product_details.xml" value="0.19074074074074074" />
+        <entry key="..\:/Documentos/Desktop/Mobile/AMMarket/app/src/main/res/layout/fragment_favorites.xml" value="0.18" />
         <entry key="..\:/Documentos/Desktop/Mobile/AMMarket/app/src/main/res/layout/fragment_search.xml" value="0.14492753623188406" />
         <entry key="..\:/Documentos/Desktop/Mobile/AMMarket/app/src/main/res/layout/related_item_holder.xml" value="0.33" />
       </map>

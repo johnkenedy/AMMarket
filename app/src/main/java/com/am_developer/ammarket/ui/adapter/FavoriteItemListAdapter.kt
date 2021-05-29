@@ -13,7 +13,7 @@ import com.am_developer.ammarket.R
 import com.am_developer.ammarket.models.Product
 import com.am_developer.ammarket.utils.GlideLoader
 
-class RelatedItemListAdapter(
+class FavoriteItemListAdapter(
     private val context: Context,
     private val list: ArrayList<Product>
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
@@ -39,38 +39,14 @@ class RelatedItemListAdapter(
                 "$${model.price}"
             holder.itemView.findViewById<TextView>(R.id.tv_related_product_quantity).text =
                 model.stock_quantity
-
-            if (model.favorite == "yes") {
-                holder.itemView.findViewById<ImageView>(R.id.add_related_item_to_fav)
-                    .setImageResource(R.drawable.ic_heart_full)
-            } else {
-                model.favorite = "no"
-                holder.itemView.findViewById<ImageView>(R.id.add_related_item_to_fav)
-                    .setImageResource(R.drawable.heart)
+            holder.itemView.findViewById<ImageView>(R.id.add_related_item_to_fav).setImageResource(
+                R.drawable.ic_heart_full
+            )
+            holder.itemView.findViewById<ImageView>(R.id.add_related_item_to_cart).setOnClickListener {
+                Toast.makeText(context, "Product added to Cart <3 SQN", Toast.LENGTH_LONG).show()
             }
 
-            holder.itemView.findViewById<ImageView>(R.id.add_related_item_to_fav)
-                .setOnClickListener {
-                    if (model.favorite == "yes") {
-                        holder.itemView.findViewById<ImageView>(R.id.add_related_item_to_fav)
-                            .setImageResource(R.drawable.heart)
-                        Toast.makeText(context, "Product removed to Fav", Toast.LENGTH_SHORT).show()
-                    } else {
-                        model.favorite = "yes"
-                        holder.itemView.findViewById<ImageView>(R.id.add_related_item_to_fav)
-                            .setImageResource(R.drawable.ic_heart_full)
-                        Toast.makeText(context, "Product added to Fav", Toast.LENGTH_SHORT).show()
-                    }
-                }
 
-
-//            holder.itemView.setOnClickListener {
-//                val intent = Intent(context, ProductDetailsActivity::class.java)
-//                intent.putExtra(Constants.EXTRA_PRODUCT_ID, model.product_id)
-//                intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-//                context.startActivity(intent)
-//                BaseActivity().closeActivity()
-//            }
         }
     }
 

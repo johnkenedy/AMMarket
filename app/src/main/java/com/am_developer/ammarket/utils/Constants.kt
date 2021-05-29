@@ -10,6 +10,7 @@ object Constants {
     const val USERS: String = "users"
     const val USER_ID: String = "user_id"
     const val PRODUCTS: String = "products"
+    const val FAVORITE: String = "favorite"
     const val CATEGORY: String = "category"
     const val ADDRESSES: String = "addresses"
     const val LIST: String = "list"
